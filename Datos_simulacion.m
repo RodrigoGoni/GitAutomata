@@ -13,6 +13,7 @@ VelMax_yD=[-3 3];
 acleMax_y=[-1 1];
 % carga supendida
 g=9.80665;
+delta_t=0;
 Spreader=15000;
 mCont_D=2000;
 mCont_C=50000;
