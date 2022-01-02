@@ -70,8 +70,8 @@ Kcy=1.3e9;
 % plot(torque_ts)
 
 %% frecuencia lazo discreto 
-polo_c=7*beq_tc/Meq_c
-polo_i=5*beq_ti/Meq_i
+polo_c=7*beq_tc/Meq_c;
+polo_i=5*beq_ti/Meq_i;
 n=2.5;
 % PID gains
 Kcd=Meq_c*polo_c*n;
