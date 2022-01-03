@@ -51,7 +51,7 @@ Meq_i=m_h+Jeq_i/Rd^2;
 beq_ti=(b_h+beq_iel)/Rd^2;
 % Modulador de torque
 Tau=1e-3;
-ml=65000
+ml=65000;
 % %% Load
 bcx=1000e3;
 bcy=500e3;
