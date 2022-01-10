@@ -13,7 +13,7 @@
  * Subsystem name                  : nivel1/NIVEL 1
  * Subsystem sample time           : 0.2s
  * Simulink PLC Coder version      : 3.3 (R2020b) 29-Jul-2020
- * ST code generated on            : Mon Jan 03 21:18:48 2022
+ * ST code generated on            : Fri Jan 07 21:25:56 2022
  *
  * Target IDE selection            : 3S CoDeSys 2.3
  * Test Bench included             : No
@@ -30,14 +30,14 @@ VAR_INPUT
     cS: LREAL;
     sCarga: LREAL;
     cAng: LREAL;
-    xl: LREAL;
+    xCarro_pos: LREAL;
     Parada: LREAL;
     b_time: LREAL;
-    yl: LREAL;
+    yCarro_pos: LREAL;
     modo: LREAL;
     theta: LREAL;
     vel_Izmax: LREAL;
-    Se1: LREAL;
+    flag_emergencia: LREAL;
     posF_flag: LREAL;
 END_VAR
 VAR_OUTPUT
@@ -125,9 +125,9 @@ CASE ssMethodType OF
             (* '<S1>:5:3' modo_op = 0; *)
             modo_op := 0.0;
             (* '<S1>:5:4' xsi=xCarro_pos; *)
-            xsi := xl;
+            xsi := xCarro_pos;
             (* '<S1>:5:5' ysi=yCarro_pos; *)
-            ysi := yl;
+            ysi := yCarro_pos;
             (* '<S1>:5:6' vx=0; *)
             vx := 0.0;
             (* '<S1>:5:7' vy=0; *)
@@ -144,7 +144,7 @@ CASE ssMethodType OF
             (* '<S1>:5:13' modo_de_control=0; *)
             modo_de_control := 0.0;
             (* '<S1>:5:14' dist_desp=yCarro_pos-20; *)
-            dist_desp := yl - 20.0;
+            dist_desp := yCarro_pos - 20.0;
             (* '<S1>:5:15' if(dist_desp>2) *)
             IF dist_desp > 2.0 THEN 
                 (* '<S1>:5:16' flag_disDesP=1; *)
@@ -206,7 +206,7 @@ CASE ssMethodType OF
                     ELSE 
                         sf_internal_predicateOutput := FALSE;
                     END_IF;
-                    IF sf_internal_predicateOutput OR (Se1 <> 0.0) THEN 
+                    IF sf_internal_predicateOutput OR (flag_emergencia <> 0.0) THEN 
                         (* Transition: '<S1>:51' *)
                         (* Transition: '<S1>:193' *)
                         (* Exit Internal 'Automatico': '<S1>:18' *)
@@ -243,25 +243,25 @@ CASE ssMethodType OF
                                             modo_de_control := 1.0;
                                             (* During 'cargaBarco': '<S1>:96' *)
                                             (* '<S1>:96:13' error=Calc_error(xsf,xCarro_pos,ysf,yCarro_pos); *)
-                                            error := Calc_error(xf := xsf, xpos := xl, yf := ysf, ypos := yl);
+                                            error := Calc_error(xf := xsf, xpos := xCarro_pos, yf := ysf, ypos := yCarro_pos);
                                         NIVEL_IN_descaragBarco: 
                                             velmX := 4.0;
                                             modo_de_control := 1.0;
                                             (* During 'descaragBarco': '<S1>:97' *)
                                             (* '<S1>:97:13' error=Calc_error(xsf,xCarro_pos,ysf,yCarro_pos); *)
-                                            error := Calc_error(xf := xsf, xpos := xl, yf := ysf, ypos := yl);
+                                            error := Calc_error(xf := xsf, xpos := xCarro_pos, yf := ysf, ypos := yCarro_pos);
                                         ELSE
                                             modo_op := 3.0;
                                             (* During 'standby': '<S1>:100' *)
                                             (* '<S1>:101:1' sf_internal_predicateOutput = xCarro_pos<30; *)
-                                            IF xl < 30.0 THEN 
+                                            IF xCarro_pos < 30.0 THEN 
                                                 (* Transition: '<S1>:101' *)
                                                 is_CicloDoble := NIVEL_IN_cargaBarco;
                                                 (* Entry 'cargaBarco': '<S1>:96' *)
                                                 (* '<S1>:96:3' xsi=xCarro_pos; *)
-                                                xsi := xl;
+                                                xsi := xCarro_pos;
                                                 (* '<S1>:96:4' ysi=yCarro_pos; *)
-                                                ysi := yl;
+                                                ysi := yCarro_pos;
                                                 (* '<S1>:96:5' xsf=xef; *)
                                                 xsf := xef;
                                                 (* '<S1>:96:6' ysf=yef; *)
@@ -277,14 +277,14 @@ CASE ssMethodType OF
                                                 (* '<S1>:96:11' flagD_cB=1; *)
                                             ELSE 
                                                 (* '<S1>:102:1' sf_internal_predicateOutput = xCarro_pos>30; *)
-                                                IF xl > 30.0 THEN 
+                                                IF xCarro_pos > 30.0 THEN 
                                                     (* Transition: '<S1>:102' *)
                                                     is_CicloDoble := NIVEL_IN_descaragBarco;
                                                     (* Entry 'descaragBarco': '<S1>:97' *)
                                                     (* '<S1>:97:3' xsi=xCarro_pos; *)
-                                                    xsi := xl;
+                                                    xsi := xCarro_pos;
                                                     (* '<S1>:97:4' ysi=yCarro_pos; *)
-                                                    ysi := yl;
+                                                    ysi := yCarro_pos;
                                                     (* '<S1>:97:5' xsf=xef; *)
                                                     xsf := xef;
                                                     (* '<S1>:97:6' ysf=yef; *)
@@ -322,31 +322,31 @@ CASE ssMethodType OF
                                             modo_de_control := 1.0;
                                             (* During 'cargaBarco': '<S1>:33' *)
                                             (* '<S1>:33:11' error=Calc_error(xsf,xCarro_pos,ysf,yCarro_pos); *)
-                                            error := Calc_error(xf := xsf, xpos := xl, yf := ysf, ypos := yl);
+                                            error := Calc_error(xf := xsf, xpos := xCarro_pos, yf := ysf, ypos := yCarro_pos);
                                         NIVEL_IN_descaragBarco: 
                                             velmX := 4.0;
                                             modo_de_control := 1.0;
                                             (* During 'descaragBarco': '<S1>:35' *)
                                             (* '<S1>:35:11' error=Calc_error(xsf,xCarro_pos,ysf,yCarro_pos); *)
-                                            error := Calc_error(xf := xsf, xpos := xl, yf := ysf, ypos := yl);
+                                            error := Calc_error(xf := xsf, xpos := xCarro_pos, yf := ysf, ypos := yCarro_pos);
                                         NIVEL_IN_idaBarco: 
                                             velmX := 4.0;
                                             modo_de_control := 1.0;
                                             (* During 'idaBarco': '<S1>:55' *)
                                             (* '<S1>:55:11' error=Calc_error(xsf,xCarro_pos,ysf,yCarro_pos); *)
-                                            error := Calc_error(xf := xsf, xpos := xl, yf := ysf, ypos := yl);
+                                            error := Calc_error(xf := xsf, xpos := xCarro_pos, yf := ysf, ypos := yCarro_pos);
                                         NIVEL_IN_standby_n: 
                                             modo_op := 2.0;
                                             (* During 'standby': '<S1>:56' *)
                                             (* '<S1>:59:1' sf_internal_predicateOutput = Scargado==1 && xCarro_pos<30; *)
-                                            IF (Scargado = 1.0) AND (xl < 30.0) THEN 
+                                            IF (Scargado = 1.0) AND (xCarro_pos < 30.0) THEN 
                                                 (* Transition: '<S1>:59' *)
                                                 is_CicloSimple := NIVEL_IN_cargaBarco;
                                                 (* Entry 'cargaBarco': '<S1>:33' *)
                                                 (* '<S1>:33:3' xsi=xCarro_pos; *)
-                                                xsi := xl;
+                                                xsi := xCarro_pos;
                                                 (* '<S1>:33:4' ysi=yCarro_pos; *)
-                                                ysi := yl;
+                                                ysi := yCarro_pos;
                                                 (* '<S1>:33:5' xsf=xef; *)
                                                 xsf := xef;
                                                 (* '<S1>:33:6' ysf=yef; *)
@@ -359,14 +359,14 @@ CASE ssMethodType OF
                                                 modo_de_control := 1.0;
                                             ELSE 
                                                 (* '<S1>:60:1' sf_internal_predicateOutput = Scargado==1 && xCarro_pos>30; *)
-                                                IF (Scargado = 1.0) AND (xl > 30.0) THEN 
+                                                IF (Scargado = 1.0) AND (xCarro_pos > 30.0) THEN 
                                                     (* Transition: '<S1>:60' *)
                                                     is_CicloSimple := NIVEL_IN_descaragBarco;
                                                     (* Entry 'descaragBarco': '<S1>:35' *)
                                                     (* '<S1>:35:3' xsi=xCarro_pos; *)
-                                                    xsi := xl;
+                                                    xsi := xCarro_pos;
                                                     (* '<S1>:35:4' ysi=yCarro_pos; *)
-                                                    ysi := yl;
+                                                    ysi := yCarro_pos;
                                                     (* '<S1>:35:5' xsf=xef; *)
                                                     xsf := xef;
                                                     (* '<S1>:35:6' ysf=yef; *)
@@ -379,14 +379,14 @@ CASE ssMethodType OF
                                                     modo_de_control := 1.0;
                                                 ELSE 
                                                     (* '<S1>:69:1' sf_internal_predicateOutput = Scargado==0 && xCarro_pos>30; *)
-                                                    IF (Scargado = 0.0) AND (xl > 30.0) THEN 
+                                                    IF (Scargado = 0.0) AND (xCarro_pos > 30.0) THEN 
                                                         (* Transition: '<S1>:69' *)
                                                         is_CicloSimple := NIVEL_IN_vueltaMuelle;
                                                         (* Entry 'vueltaMuelle': '<S1>:54' *)
                                                         (* '<S1>:54:3' xsi=xCarro_pos *)
-                                                        xsi := xl;
+                                                        xsi := xCarro_pos;
                                                         (* '<S1>:54:4' ysi=yCarro_pos *)
-                                                        ysi := yl;
+                                                        ysi := yCarro_pos;
                                                         (* '<S1>:54:5' xsf=xef *)
                                                         xsf := xef;
                                                         (* '<S1>:54:6' ysf=yef *)
@@ -399,14 +399,14 @@ CASE ssMethodType OF
                                                         modo_de_control := 1.0;
                                                     ELSE 
                                                         (* '<S1>:72:1' sf_internal_predicateOutput = Scargado==0 && xCarro_pos<30; *)
-                                                        IF (Scargado = 0.0) AND (xl < 30.0) THEN 
+                                                        IF (Scargado = 0.0) AND (xCarro_pos < 30.0) THEN 
                                                             (* Transition: '<S1>:72' *)
                                                             is_CicloSimple := NIVEL_IN_idaBarco;
                                                             (* Entry 'idaBarco': '<S1>:55' *)
                                                             (* '<S1>:55:3' xsi=xCarro_pos; *)
-                                                            xsi := xl;
+                                                            xsi := xCarro_pos;
                                                             (* '<S1>:55:4' ysi=yCarro_pos; *)
-                                                            ysi := yl;
+                                                            ysi := yCarro_pos;
                                                             (* '<S1>:55:5' xsf=xef; *)
                                                             xsf := xef;
                                                             (* '<S1>:55:6' ysf=yef; *)
@@ -426,7 +426,7 @@ CASE ssMethodType OF
                                             modo_de_control := 1.0;
                                             (* During 'vueltaMuelle': '<S1>:54' *)
                                             (* '<S1>:54:11' error=Calc_error(xsf,xCarro_pos,ysf,yCarro_pos); *)
-                                            error := Calc_error(xf := xsf, xpos := xl, yf := ysf, ypos := yl);
+                                            error := Calc_error(xf := xsf, xpos := xCarro_pos, yf := ysf, ypos := yCarro_pos);
                                     END_CASE;
                                 END_IF;
                             ELSE
@@ -473,7 +473,7 @@ CASE ssMethodType OF
                     modo_de_control := 0.0;
                     (* During 'modoManual': '<S1>:5' *)
                     (* '<S1>:50:1' sf_internal_predicateOutput = modo==97 && (dist_desp>2 || xCarro_pos>30); *)
-                    IF (modo = 97.0) AND ((dist_desp > 2.0) OR (xl > 30.0)) THEN 
+                    IF (modo = 97.0) AND ((dist_desp > 2.0) OR (xCarro_pos > 30.0)) THEN 
                         (* Transition: '<S1>:50' *)
                         is_modoOperacion := NIVEL_IN_transicion;
                         (* Entry 'transicion': '<S1>:158' *)
@@ -545,9 +545,9 @@ CASE ssMethodType OF
                             (* '<S1>:5:3' modo_op = 0; *)
                             modo_op := 0.0;
                             (* '<S1>:5:4' xsi=xCarro_pos; *)
-                            xsi := xl;
+                            xsi := xCarro_pos;
                             (* '<S1>:5:5' ysi=yCarro_pos; *)
-                            ysi := yl;
+                            ysi := yCarro_pos;
                             (* '<S1>:5:6' vx=0; *)
                             vx := 0.0;
                             (* '<S1>:5:7' vy=0; *)
@@ -564,7 +564,7 @@ CASE ssMethodType OF
                             (* '<S1>:5:13' modo_de_control=0; *)
                             modo_de_control := 0.0;
                             (* '<S1>:5:14' dist_desp=yCarro_pos-20; *)
-                            dist_desp := yl - 20.0;
+                            dist_desp := yCarro_pos - 20.0;
                             (* '<S1>:5:15' if(dist_desp>2) *)
                             IF dist_desp > 2.0 THEN 
                                 (* '<S1>:5:16' flag_disDesP=1; *)

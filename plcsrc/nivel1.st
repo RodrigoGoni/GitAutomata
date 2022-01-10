@@ -682,7 +682,7 @@ a := xf - xpos;
 b_a := yf - ypos;
 Calc_error := SQRT((a * a) + (b_a * b_a));
 END_FUNCTION
-VAR_GLOBAL CONSTANT
+VAR_GLOBAL NIVEL_IN_NO_ACTIVE_CHILD
     NIVEL_IN_NO_ACTIVE_CHILD: USINT := 0;
     NIVEL_IN_Cargado: USINT := 1;
     NIVEL_IN_Descargado: USINT := 2;
