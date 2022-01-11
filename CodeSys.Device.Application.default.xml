@@ -5,5 +5,45 @@
     <SymbolConfigObject version="4.0.0.0" runtimeid="3.5.17.20" libversion="3.5.17.0" compiler="3.5.17.20" lmm="3.5.17.0" profile="CODESYS V3.5 SP17 Patch 2+" settings="SupportOPCUA, LayoutCalculator=CompatibilityClientSideLayoutCalculator" />
     <ProjectInfo name="CodeSys" devicename="Device" appname="Application" />
   </Header>
-  <TypeList />
+  <TypeList>
+    <TypeSimple name="T_LREAL" size="8" swapsize="8" typeclass="LReal" iecname="LREAL" />
+    <TypeSimple name="T_SINT" size="1" swapsize="1" typeclass="SInt" iecname="SINT" />
+  </TypeList>
+  <NodeList>
+    <Node name="Application">
+      <Node name="INPUTS">
+        <Node name="b_time" type="T_LREAL" access="ReadWrite" />
+        <Node name="cAng" type="T_LREAL" access="ReadWrite" />
+        <Node name="cD" type="T_LREAL" access="ReadWrite" />
+        <Node name="cS" type="T_LREAL" access="ReadWrite" />
+        <Node name="flag_emergencia" type="T_LREAL" access="ReadWrite" />
+        <Node name="modo" type="T_LREAL" access="ReadWrite" />
+        <Node name="Parada" type="T_LREAL" access="ReadWrite" />
+        <Node name="posF_flag" type="T_LREAL" access="ReadWrite" />
+        <Node name="sCarga" type="T_LREAL" access="ReadWrite" />
+        <Node name="ssMethodType" type="T_SINT" access="ReadWrite" />
+        <Node name="theta" type="T_LREAL" access="ReadWrite" />
+        <Node name="vel_Izmax" type="T_LREAL" access="ReadWrite" />
+        <Node name="X_com" type="T_LREAL" access="ReadWrite" />
+        <Node name="xCarro_pos" type="T_LREAL" access="ReadWrite" />
+        <Node name="xef" type="T_LREAL" access="ReadWrite" />
+        <Node name="Y_com" type="T_LREAL" access="ReadWrite" />
+        <Node name="yCarro_pos" type="T_LREAL" access="ReadWrite" />
+        <Node name="yef" type="T_LREAL" access="ReadWrite" />
+      </Node>
+      <Node name="OUTPUTS">
+        <Node name="flag_disDesP" type="T_LREAL" access="ReadWrite" />
+        <Node name="modo_de_control" type="T_LREAL" access="ReadWrite" />
+        <Node name="modo_op" type="T_LREAL" access="ReadWrite" />
+        <Node name="velmX" type="T_LREAL" access="ReadWrite" />
+        <Node name="velmY" type="T_LREAL" access="ReadWrite" />
+        <Node name="vx" type="T_LREAL" access="ReadWrite" />
+        <Node name="vy" type="T_LREAL" access="ReadWrite" />
+        <Node name="xsf" type="T_LREAL" access="ReadWrite" />
+        <Node name="xsi" type="T_LREAL" access="ReadWrite" />
+        <Node name="ysf" type="T_LREAL" access="ReadWrite" />
+        <Node name="ysi" type="T_LREAL" access="ReadWrite" />
+      </Node>
+    </Node>
+  </NodeList>
 </Symbolconfiguration>

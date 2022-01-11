@@ -5,5 +5,11 @@
     <SymbolConfigObject version="4.0.0.0" runtimeid="3.5.17.20" libversion="3.5.17.0" compiler="3.5.17.20" lmm="3.5.17.0" profile="CODESYS V3.5 SP17 Patch 2+" settings="SupportOPCUA, LayoutCalculator=CompatibilityClientSideLayoutCalculator" />
     <ProjectInfo name="CodeSys" devicename="Device" appname="Application" />
   </Header>
-  <TypeList />
+  <TypeList>
+    <TypeSimple name="T_LREAL" size="8" swapsize="8" typeclass="LReal" iecname="LREAL" />
+    <TypeSimple name="T_SINT" size="1" swapsize="1" typeclass="SInt" iecname="SINT" />
+  </TypeList>
+  <NodeList>
+    <Node name="Application" />
+  </NodeList>
 </Symbolconfiguration>
