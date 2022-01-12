@@ -1,0 +1,407 @@
+(*
+ *
+ * File: nivel0.exp
+ *
+ * IEC 61131-3 Structured Text (ST) code generated for subsystem "nivel0/NIVEL 0"
+ *
+ * Model name                      : nivel0
+ * Model version                   : 1.1
+ * Model creator                   : GoniR
+ * Model last modified by          : GoniR
+ * Model last modified on          : Wed Jan 12 16:13:48 2022
+ * Model sample time               : 0s
+ * Subsystem name                  : nivel0/NIVEL 0
+ * Subsystem sample time           : 0.2s
+ * Simulink PLC Coder version      : 3.3 (R2020b) 29-Jul-2020
+ * ST code generated on            : Wed Jan 12 16:14:12 2022
+ *
+ * Target IDE selection            : 3S CoDeSys 2.3
+ * Test Bench included             : No
+ *
+ *)
+FUNCTION_BLOCK NIVEL
+VAR_INPUT
+    ssMethodType: SINT;
+    FCxc_80: LREAL;
+    FCxc_0: LREAL;
+    FCi: LREAL;
+    S_e1: LREAL;
+    S_e2: LREAL;
+    S_e3: LREAL;
+    vMi: LREAL;
+    vi: LREAL;
+    vc: LREAL;
+    b_time: LREAL;
+    X_com: LREAL;
+    Y_com: LREAL;
+    yCarro_pos: LREAL;
+    FinEmer: LREAL;
+    theta: LREAL;
+END_VAR
+VAR_OUTPUT
+    alarmaC: LREAL;
+    alarmaG: LREAL;
+    alarmaIz: LREAL;
+    alarmaM: LREAL;
+    vy: LREAL;
+    vx: LREAL;
+    flag_control: LREAL;
+    flag_emergencia: LREAL;
+END_VAR
+VAR
+    is_active_c5_NIVEL: USINT;
+    is_c5_NIVEL: USINT;
+    is_EMERGENCIA: USINT;
+    is_CHEQUEO_ERROR: USINT;
+    time_a: LREAL;
+    vx_a: LREAL;
+    vy_a: LREAL;
+    i0_Calc_v1: Calc_v1;
+    i0_Calc_v: Calc_v;
+END_VAR
+VAR_TEMP
+    temp1: BOOL;
+END_VAR
+CASE ssMethodType OF
+    SS_INITIALIZE: 
+        (* SystemInitialize for Chart: '<Root>/NIVEL 0' *)
+        is_EMERGENCIA := NIVEL_IN_NO_ACTIVE_CHILD;
+        is_CHEQUEO_ERROR := NIVEL_IN_NO_ACTIVE_CHILD;
+        is_active_c5_NIVEL := 0;
+        is_c5_NIVEL := NIVEL_IN_NO_ACTIVE_CHILD;
+    SS_STEP: 
+        (* Chart: '<Root>/NIVEL 0' incorporates:
+         *  Outport: '<Root>/alarmaC'
+         *  Outport: '<Root>/alarmaG'
+         *  Outport: '<Root>/alarmaIz'
+         *  Outport: '<Root>/alarmaM'
+         *  Outport: '<Root>/flag_control'
+         *  Outport: '<Root>/flag_emergencia'
+         *  Outport: '<Root>/vx'
+         *  Outport: '<Root>/vy' *)
+        (* Gateway: NIVEL 0 *)
+        (* During: NIVEL 0 *)
+        IF is_active_c5_NIVEL = 0 THEN 
+            (* Entry: NIVEL 0 *)
+            is_active_c5_NIVEL := 1;
+            (* Entry Internal: NIVEL 0 *)
+            (* Transition: '<S1>:2' *)
+            is_c5_NIVEL := NIVEL_IN_NORMAL;
+            (* Entry Internal 'NORMAL': '<S1>:35' *)
+            (* Entry Internal 'CHEQUEO_ERROR': '<S1>:47' *)
+            (* Transition: '<S1>:37' *)
+            is_CHEQUEO_ERROR := b_NIVEL_IN_Normal;
+            (* Entry 'Normal': '<S1>:42' *)
+            (* '<S1>:42:2' flag_emergencia=0; *)
+            flag_emergencia := 0.0;
+            (* '<S1>:42:3' alarmaIz=0; *)
+            alarmaIz := 0.0;
+            (* '<S1>:42:4' alarmaC=0; *)
+            alarmaC := 0.0;
+            (* '<S1>:42:5' alarmaG=0; *)
+            alarmaG := 0.0;
+            (* '<S1>:42:6' flag_control=0; *)
+            flag_control := 0.0;
+            (* Entry 'WATCHDOG': '<S1>:46' *)
+            (* '<S1>:46:3' alarmaM=0; *)
+            alarmaM := 0.0;
+        ELSE 
+            CASE is_c5_NIVEL OF
+                NIVEL_IN_EMERGENCIA: 
+                    (* During 'EMERGENCIA': '<S1>:3' *)
+                    (* '<S1>:19:1' sf_internal_predicateOutput = alarmaM==0&&alarmaG==0&&alarmaC==0&&alarmaIz==0; *)
+                    IF (((alarmaM = 0.0) AND (alarmaG = 0.0)) AND (alarmaC = 0.0)) AND (alarmaIz = 0.0) THEN 
+                        (* Transition: '<S1>:19' *)
+                        (* Exit Internal 'EMERGENCIA': '<S1>:3' *)
+                        CASE is_EMERGENCIA OF
+                            NIVEL_IN_ReduVeltransicion1: 
+                                (* Exit 'ReduVeltransicion1': '<S1>:70' *)
+                                (* '<S1>:70:13' vx = 0 *)
+                                vx := 0.0;
+                                (* '<S1>:70:14' vy = 0 *)
+                                vy := 0.0;
+                                is_EMERGENCIA := NIVEL_IN_NO_ACTIVE_CHILD;
+                            ELSE
+                                is_EMERGENCIA := NIVEL_IN_NO_ACTIVE_CHILD;
+                        END_CASE;
+                        is_c5_NIVEL := NIVEL_IN_NORMAL;
+                        (* Entry Internal 'NORMAL': '<S1>:35' *)
+                        (* Entry Internal 'CHEQUEO_ERROR': '<S1>:47' *)
+                        (* Transition: '<S1>:37' *)
+                        is_CHEQUEO_ERROR := b_NIVEL_IN_Normal;
+                        (* Entry 'Normal': '<S1>:42' *)
+                        (* '<S1>:42:2' flag_emergencia=0; *)
+                        flag_emergencia := 0.0;
+                        (* '<S1>:42:3' alarmaIz=0; *)
+                        alarmaIz := 0.0;
+                        (* '<S1>:42:4' alarmaC=0; *)
+                        alarmaC := 0.0;
+                        (* '<S1>:42:5' alarmaG=0; *)
+                        alarmaG := 0.0;
+                        (* '<S1>:42:6' flag_control=0; *)
+                        flag_control := 0.0;
+                        (* Entry 'WATCHDOG': '<S1>:46' *)
+                        (* '<S1>:46:3' alarmaM=0; *)
+                        alarmaM := 0.0;
+                    ELSE 
+                        CASE is_EMERGENCIA OF
+                            NIVEL_IN_Apagar_alarm: 
+                                alarmaIz := 0.0;
+                                (* During 'Apagar_alarm': '<S1>:11' *)
+                            NIVEL_IN_EstadoManual: 
+                                flag_emergencia := 1.0;
+                                (* During 'EstadoManual': '<S1>:9' *)
+                                (* '<S1>:27:1' sf_internal_predicateOutput = FinEmer; *)
+                                IF FinEmer <> 0.0 THEN 
+                                    (* Transition: '<S1>:27' *)
+                                    is_EMERGENCIA := NIVEL_IN_Apagar_alarm;
+                                    (* Entry 'Apagar_alarm': '<S1>:11' *)
+                                    (* '<S1>:11:3' alarmaIz=0; *)
+                                    alarmaIz := 0.0;
+                                    (* '<S1>:11:4' alarmaC=0; *)
+                                    alarmaC := 0.0;
+                                    (* '<S1>:11:5' alarmaG=0; *)
+                                    alarmaG := 0.0;
+                                    (* '<S1>:11:6' alarmaM=0 *)
+                                    alarmaM := 0.0;
+                                ELSE 
+                                    (* '<S1>:9:9' delta_t=time-time_a; *)
+                                    (* '<S1>:9:10' [vx,vy]=Calc_v(delta_t,vx_a,vy_a,X_com,Y_com); *)
+                                    i0_Calc_v(delta_t1 := b_time - time_a, vx_a1 := vx_a, vy_a1 := vy_a, X_com1 := X_com, Y_com1 := Y_com);
+                                    vx := i0_Calc_v.vx1;
+                                    vy := i0_Calc_v.vy1;
+                                    (* '<S1>:9:11' time_a=time; *)
+                                    time_a := b_time;
+                                    (* '<S1>:9:12' vx_a=vx; *)
+                                    vx_a := vx;
+                                    (* '<S1>:9:13' vy_a=vy; *)
+                                    vy_a := vy;
+                                END_IF;
+                            ELSE
+                                flag_control := 1.0;
+                                (* During 'ReduVeltransicion1': '<S1>:70' *)
+                                (* '<S1>:72:1' sf_internal_predicateOutput = abs(vx)<0.1 && abs(vy)<0.01 && theta<0.05; *)
+                                temp1 := FALSE;
+                                IF ABS(vx) < 0.1 THEN 
+                                    IF ABS(vy) < 0.01 THEN 
+                                        IF theta < 0.05 THEN 
+                                            (* Transition: '<S1>:72' *)
+                                            (* Exit 'ReduVeltransicion1': '<S1>:70' *)
+                                            (* '<S1>:70:13' vx = 0 *)
+                                            vx := 0.0;
+                                            (* '<S1>:70:14' vy = 0 *)
+                                            vy := 0.0;
+                                            is_EMERGENCIA := NIVEL_IN_EstadoManual;
+                                            (* Entry 'EstadoManual': '<S1>:9' *)
+                                            (* '<S1>:9:3' time_a=time; *)
+                                            time_a := b_time;
+                                            (* '<S1>:9:4' vx_a=0; *)
+                                            vx_a := 0.0;
+                                            (* '<S1>:9:5' vy_a=0; *)
+                                            vy_a := 0.0;
+                                            (* '<S1>:9:6' delta_t=0; *)
+                                            (* '<S1>:9:7' flag_emergencia=1; *)
+                                            flag_emergencia := 1.0;
+                                        ELSE 
+                                            temp1 := TRUE;
+                                        END_IF;
+                                    ELSE 
+                                        temp1 := TRUE;
+                                    END_IF;
+                                ELSE 
+                                    temp1 := TRUE;
+                                END_IF;
+                                IF temp1 THEN 
+                                    (* Outport: '<Root>/vy' *)
+                                    (* '<S1>:70:9' delta_t=time-time_a; *)
+                                    (* '<S1>:70:10' [vx,vy]=Calc_v1(delta_t,vx,vy) *)
+                                    i0_Calc_v1(delta_t2 := b_time - time_a, vx_a2 := vx, vy_a2 := vy);
+                                    vx := i0_Calc_v1.vx2;
+                                    vy := i0_Calc_v1.vy2;
+                                    (* '<S1>:70:11' time_a=time; *)
+                                    time_a := b_time;
+                                END_IF;
+                        END_CASE;
+                    END_IF;
+                ELSE
+                    (* During 'NORMAL': '<S1>:35' *)
+                    (* '<S1>:18:1' sf_internal_predicateOutput = alarmaM||alarmaG||alarmaC||alarmaIz; *)
+                    IF (((alarmaM <> 0.0) OR (alarmaG <> 0.0)) OR (alarmaC <> 0.0)) OR (alarmaIz <> 0.0) THEN 
+                        (* Transition: '<S1>:18' *)
+                        (* Exit Internal 'NORMAL': '<S1>:35' *)
+                        (* Exit Internal 'CHEQUEO_ERROR': '<S1>:47' *)
+                        is_CHEQUEO_ERROR := NIVEL_IN_NO_ACTIVE_CHILD;
+                        is_c5_NIVEL := NIVEL_IN_EMERGENCIA;
+                        (* Entry Internal 'EMERGENCIA': '<S1>:3' *)
+                        (* Transition: '<S1>:71' *)
+                        is_EMERGENCIA := NIVEL_IN_ReduVeltransicion1;
+                        (* Entry 'ReduVeltransicion1': '<S1>:70' *)
+                        (* '<S1>:70:3' flag_control=1; *)
+                        flag_control := 1.0;
+                        (* '<S1>:70:4' time_a=time; *)
+                        time_a := b_time;
+                        (* '<S1>:70:5' delta_t=0; *)
+                        (* '<S1>:70:6' vx=vc; *)
+                        vx := vc;
+                        (* '<S1>:70:7' vy=vi; *)
+                        vy := vi;
+                    ELSE 
+                        (* During 'CHEQUEO_ERROR': '<S1>:47' *)
+                        CASE is_CHEQUEO_ERROR OF
+                            NIVEL_IN_ErrorCarro: 
+                                (* During 'ErrorCarro': '<S1>:44' *)
+                                (* '<S1>:41:1' sf_internal_predicateOutput = [FCi||vMi<vi]; *)
+                                IF (FCi <> 0.0) OR (vMi < vi) THEN 
+                                    (* Transition: '<S1>:41' *)
+                                    is_CHEQUEO_ERROR := NIVEL_IN_ErrorGeneral;
+                                    (* Entry 'ErrorGeneral': '<S1>:45' *)
+                                    (* '<S1>:45:2' alarmaG=1; *)
+                                    alarmaG := 1.0;
+                                ELSE 
+                                    (* '<S1>:44:2' alarmaC=1; *)
+                                    alarmaC := 1.0;
+                                END_IF;
+                            NIVEL_IN_ErrorGeneral: 
+                                (* During 'ErrorGeneral': '<S1>:45' *)
+                                (* '<S1>:45:2' alarmaG=1; *)
+                                alarmaG := 1.0;
+                            NIVEL_IN_ErrorIzaje: 
+                                alarmaIz := 1.0;
+                                (* During 'ErrorIzaje': '<S1>:43' *)
+                                (* '<S1>:40:1' sf_internal_predicateOutput = [FCxc_80 || FCxc_0 || vc>4]; *)
+                                IF ((FCxc_80 <> 0.0) OR (FCxc_0 <> 0.0)) OR (vc > 4.0) THEN 
+                                    (* Transition: '<S1>:40' *)
+                                    is_CHEQUEO_ERROR := NIVEL_IN_ErrorGeneral;
+                                    (* Entry 'ErrorGeneral': '<S1>:45' *)
+                                    (* '<S1>:45:2' alarmaG=1; *)
+                                    alarmaG := 1.0;
+                                END_IF;
+                            ELSE
+                                flag_emergencia := 0.0;
+                                alarmaIz := 0.0;
+                                flag_control := 0.0;
+                                (* During 'Normal': '<S1>:42' *)
+                                (* '<S1>:38:1' sf_internal_predicateOutput = FCi||vMi<vi; *)
+                                IF (FCi <> 0.0) OR (vMi < vi) THEN 
+                                    (* Transition: '<S1>:38' *)
+                                    is_CHEQUEO_ERROR := NIVEL_IN_ErrorIzaje;
+                                    (* Entry 'ErrorIzaje': '<S1>:43' *)
+                                    (* '<S1>:43:3' alarmaIz=1; *)
+                                    alarmaIz := 1.0;
+                                ELSE 
+                                    (* '<S1>:39:1' sf_internal_predicateOutput = FCxc_80 || FCxc_0 || vc>4; *)
+                                    IF ((FCxc_80 <> 0.0) OR (FCxc_0 <> 0.0)) OR (vc > 4.0) THEN 
+                                        (* Transition: '<S1>:39' *)
+                                        is_CHEQUEO_ERROR := NIVEL_IN_ErrorCarro;
+                                        (* Entry 'ErrorCarro': '<S1>:44' *)
+                                        (* '<S1>:44:2' alarmaC=1; *)
+                                        alarmaC := 1.0;
+                                    END_IF;
+                                END_IF;
+                        END_CASE;
+                        (* During 'WATCHDOG': '<S1>:46' *)
+                        (* '<S1>:46:5' if(S_e1==0) *)
+                        IF S_e1 = 0.0 THEN 
+                            (* '<S1>:46:6' alarmaM=1; *)
+                            alarmaM := 1.0;
+                        END_IF;
+                        (* '<S1>:46:8' if(S_e2==0) *)
+                        IF S_e2 = 0.0 THEN 
+                            (* '<S1>:46:9' alarmaM=1; *)
+                            alarmaM := 1.0;
+                        END_IF;
+                        (* '<S1>:46:11' if(S_e3==0) *)
+                        IF S_e3 = 0.0 THEN 
+                            (* '<S1>:46:12' alarmaM=1; *)
+                            alarmaM := 1.0;
+                        END_IF;
+                    END_IF;
+            END_CASE;
+        END_IF;
+        (* End of Chart: '<Root>/NIVEL 0' *)
+END_CASE;
+END_FUNCTION_BLOCK
+FUNCTION_BLOCK Calc_v1
+VAR_INPUT
+    delta_t2: LREAL;
+    vx_a2: LREAL;
+    vy_a2: LREAL;
+END_VAR
+VAR_OUTPUT
+    vx2: LREAL;
+    vy2: LREAL;
+END_VAR
+(* MATLAB Function 'Calc_v1': '<S1>:69' *)
+(* '<S1>:69:2' if (vx_a2 < 0 ) *)
+IF vx_a2 < 0.0 THEN 
+    (* '<S1>:69:3' vx2=0.2*(delta_t2)+vx_a2; *)
+    vx2 := (0.2 * delta_t2) + vx_a2;
+ELSE 
+    (* '<S1>:69:4' else *)
+    (* '<S1>:69:5' vx2=-0.2*(delta_t2)+vx_a2; *)
+    vx2 := (-0.2 * delta_t2) + vx_a2;
+END_IF;
+(* '<S1>:69:7' if (vy_a2 < 0) *)
+IF vy_a2 < 0.0 THEN 
+    (* '<S1>:69:8' vy2=0.2*(delta_t2)+vy_a2 *)
+    vy2 := (0.2 * delta_t2) + vy_a2;
+ELSE 
+    (* '<S1>:69:9' else *)
+    (* '<S1>:69:10' vy2=-0.2*(delta_t2)+vy_a2 *)
+    vy2 := (-0.2 * delta_t2) + vy_a2;
+END_IF;
+END_FUNCTION_BLOCK
+FUNCTION_BLOCK Calc_v
+VAR_INPUT
+    delta_t1: LREAL;
+    vx_a1: LREAL;
+    vy_a1: LREAL;
+    X_com1: LREAL;
+    Y_com1: LREAL;
+END_VAR
+VAR_OUTPUT
+    vx1: LREAL;
+    vy1: LREAL;
+END_VAR
+(* MATLAB Function 'Calc_v': '<S1>:99' *)
+(* '<S1>:99:2' if (X_com1 == 29 && vx_a1<4) *)
+IF (X_com1 = 29.0) AND (vx_a1 < 4.0) THEN 
+    (* '<S1>:99:3' vx1=0.8*(delta_t1)+vx_a1; *)
+    vx1 := (0.8 * delta_t1) + vx_a1;
+ELSIF (X_com1 = 28.0) AND (vx_a1 > -4.0) THEN 
+    (* '<S1>:99:4' elseif (X_com1 == 28 && vx_a1 > -4 ) *)
+    (* '<S1>:99:5' vx1=-0.8*(delta_t1)+vx_a1; *)
+    vx1 := (-0.8 * delta_t1) + vx_a1;
+ELSE 
+    (* '<S1>:99:6' else *)
+    (* '<S1>:99:7' vx1=vx_a1; *)
+    vx1 := vx_a1;
+END_IF;
+(* '<S1>:99:9' if (Y_com1 == 31 && vy_a1<1.5) *)
+IF (Y_com1 = 31.0) AND (vy_a1 < 1.5) THEN 
+    (* '<S1>:99:10' vy1=0.8*(delta_t1)+vy_a1 *)
+    vy1 := (0.8 * delta_t1) + vy_a1;
+ELSIF (Y_com1 = 30.0) AND (vy_a1 > -1.5) THEN 
+    (* '<S1>:99:11' elseif (Y_com1==30 && vy_a1>-1.5) *)
+    (* '<S1>:99:12' vy1=-0.8*(delta_t1)+vy_a1 *)
+    vy1 := (-0.8 * delta_t1) + vy_a1;
+ELSE 
+    (* '<S1>:99:13' else *)
+    (* '<S1>:99:14' vy1=vy_a1 *)
+    vy1 := vy_a1;
+END_IF;
+END_FUNCTION_BLOCK
+VAR_GLOBAL CONSTANT
+    NIVEL_IN_NO_ACTIVE_CHILD: USINT := 0;
+    NIVEL_IN_EMERGENCIA: USINT := 1;
+    NIVEL_IN_NORMAL: USINT := 2;
+    NIVEL_IN_ErrorCarro: USINT := 1;
+    NIVEL_IN_ErrorGeneral: USINT := 2;
+    NIVEL_IN_ErrorIzaje: USINT := 3;
+    b_NIVEL_IN_Normal: USINT := 4;
+    NIVEL_IN_Apagar_alarm: USINT := 1;
+    NIVEL_IN_EstadoManual: USINT := 2;
+    NIVEL_IN_ReduVeltransicion1: USINT := 3;
+    SS_INITIALIZE: SINT := 0;
+    SS_STEP: SINT := 1;
+END_VAR

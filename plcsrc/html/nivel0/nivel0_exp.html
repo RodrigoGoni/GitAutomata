@@ -1,0 +1,426 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>RTW Report - nivel0.exp</title>
+<link rel="stylesheet" type="text/css" href="rtwreport.css"></link><script language="JavaScript" type="text/javascript" src="rtwreport_utils.js"></script>
+<SCRIPT type="text/javascript" language="JavaScript" src="slwebview.js"></SCRIPT>
+<SCRIPT type="text/javascript" language="JavaScript" src="id_mapping.js"></SCRIPT>
+</head>
+<body bgcolor="#eeeeee" onload="try {if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window.document); else local_onload();}} catch(err) {};">
+<p>
+<table border="0" cellspacing="0" cellpadding="6" width="100%%" height="100%%"><tr><td width="100%%" valign="top" bgcolor="#ffffff">
+<h4>File: <a href="file:///plcsrc/nivel0.exp" target="rtwreport_document_frame" id="linkToText_plain">nivel0.exp</a></h4>
+<pre id="RTWcode">
+<span><a class="LN" name="1">    1   </a><span class="CT">(*</span>
+</span><span><a class="LN" name="2">    2   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="3">    3   </a><span class="CT"> * File: nivel0.exp</span>
+</span><span><a class="LN" name="4">    4   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="5">    5   </a><span class="CT"> * IEC 61131-3 Structured Text (ST) code generated for subsystem "nivel0/NIVEL 0"</span>
+</span><span><a class="LN" name="6">    6   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="7">    7   </a><span class="CT"> * Model name                      : nivel0</span>
+</span><span><a class="LN" name="8">    8   </a><span class="CT"> * Model version                   : 1.1</span>
+</span><span><a class="LN" name="9">    9   </a><span class="CT"> * Model creator                   : GoniR</span>
+</span><span><a class="LN" name="10">   10   </a><span class="CT"> * Model last modified by          : GoniR</span>
+</span><span><a class="LN" name="11">   11   </a><span class="CT"> * Model last modified on          : Wed Jan 12 16:13:48 2022</span>
+</span><span><a class="LN" name="12">   12   </a><span class="CT"> * Model sample time               : 0s</span>
+</span><span><a class="LN" name="13">   13   </a><span class="CT"> * Subsystem name                  : nivel0/NIVEL 0</span>
+</span><span><a class="LN" name="14">   14   </a><span class="CT"> * Subsystem sample time           : 0.2s</span>
+</span><span><a class="LN" name="15">   15   </a><span class="CT"> * Simulink PLC Coder version      : 3.3 (R2020b) 29-Jul-2020</span>
+</span><span><a class="LN" name="16">   16   </a><span class="CT"> * ST code generated on            : Wed Jan 12 16:14:12 2022</span>
+</span><span><a class="LN" name="17">   17   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="18">   18   </a><span class="CT"> * Target IDE selection            : 3S CoDeSys 2.3</span>
+</span><span><a class="LN" name="19">   19   </a><span class="CT"> * Test Bench included             : No</span>
+</span><span><a class="LN" name="20">   20   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="21">   21   </a><span class="CT"> *)</span>
+</span><span><a class="LN" name="22">   22   </a><span class="KW">FUNCTION_BLOCK</span> NIVEL
+</span><span><a class="LN" name="23">   23   </a><span class="KW">VAR_INPUT</span>
+</span><span><a class="LN" name="24">   24   </a>    ssMethodType: <span class="KW">SINT</span>;
+</span><span><a class="LN" name="25">   25   </a>    FCxc_80: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="26">   26   </a>    FCxc_0: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="27">   27   </a>    FCi: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="28">   28   </a>    S_e1: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="29">   29   </a>    S_e2: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="30">   30   </a>    S_e3: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="31">   31   </a>    vMi: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="32">   32   </a>    vi: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="33">   33   </a>    vc: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="34">   34   </a>    b_time: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="35">   35   </a>    X_com: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="36">   36   </a>    Y_com: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="37">   37   </a>    yCarro_pos: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="38">   38   </a>    FinEmer: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="39">   39   </a>    theta: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="40">   40   </a><span class="KW">END_VAR</span>
+</span><span><a class="LN" name="41">   41   </a><span class="KW">VAR_OUTPUT</span>
+</span><span><a class="LN" name="42">   42   </a>    alarmaC: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="43">   43   </a>    alarmaG: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="44">   44   </a>    alarmaIz: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="45">   45   </a>    alarmaM: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="46">   46   </a>    vy: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="47">   47   </a>    vx: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="48">   48   </a>    flag_control: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="49">   49   </a>    flag_emergencia: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="50">   50   </a><span class="KW">END_VAR</span>
+</span><span><a class="LN" name="51">   51   </a><span class="KW">VAR</span>
+</span><span><a class="LN" name="52">   52   </a>    is_active_c5_NIVEL: <span class="KW">USINT</span>;
+</span><span><a class="LN" name="53">   53   </a>    is_c5_NIVEL: <span class="KW">USINT</span>;
+</span><span><a class="LN" name="54">   54   </a>    is_EMERGENCIA: <span class="KW">USINT</span>;
+</span><span><a class="LN" name="55">   55   </a>    is_CHEQUEO_ERROR: <span class="KW">USINT</span>;
+</span><span><a class="LN" name="56">   56   </a>    time_a: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="57">   57   </a>    vx_a: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="58">   58   </a>    vy_a: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="59">   59   </a>    i0_Calc_v1: Calc_v1;
+</span><span><a class="LN" name="60">   60   </a>    i0_Calc_v: Calc_v;
+</span><span><a class="LN" name="61">   61   </a><span class="KW">END_VAR</span>
+</span><span><a class="LN" name="62">   62   </a><span class="KW">VAR_TEMP</span>
+</span><span><a class="LN" name="63">   63   </a>    temp1: <span class="KW">BOOL</span>;
+</span><span><a class="LN" name="64">   64   </a><span class="KW">END_VAR</span>
+</span><span><a class="LN" name="65">   65   </a><span class="KW">CASE</span> ssMethodType <span class="KW">OF</span>
+</span><span><a class="LN" name="66">   66   </a>    SS_INITIALIZE: 
+</span><span><a class="LN" name="67">   67   </a>        <span class="CT">(* SystemInitialize for Chart: '&lt;Root&gt;/NIVEL 0' *)</span>
+</span><span><a class="LN" name="68">   68   </a>        is_EMERGENCIA := NIVEL_IN_NO_ACTIVE_CHILD;
+</span><span><a class="LN" name="69">   69   </a>        is_CHEQUEO_ERROR := NIVEL_IN_NO_ACTIVE_CHILD;
+</span><span><a class="LN" name="70">   70   </a>        is_active_c5_NIVEL := 0;
+</span><span><a class="LN" name="71">   71   </a>        is_c5_NIVEL := NIVEL_IN_NO_ACTIVE_CHILD;
+</span><span><a class="LN" name="72">   72   </a>    SS_STEP: 
+</span><span><a class="LN" name="73">   73   </a>        <span class="CT">(* Chart: '&lt;Root&gt;/NIVEL 0' incorporates:</span>
+</span><span><a class="LN" name="74">   74   </a><span class="CT">         *  Outport: '&lt;Root&gt;/alarmaC'</span>
+</span><span><a class="LN" name="75">   75   </a><span class="CT">         *  Outport: '&lt;Root&gt;/alarmaG'</span>
+</span><span><a class="LN" name="76">   76   </a><span class="CT">         *  Outport: '&lt;Root&gt;/alarmaIz'</span>
+</span><span><a class="LN" name="77">   77   </a><span class="CT">         *  Outport: '&lt;Root&gt;/alarmaM'</span>
+</span><span><a class="LN" name="78">   78   </a><span class="CT">         *  Outport: '&lt;Root&gt;/flag_control'</span>
+</span><span><a class="LN" name="79">   79   </a><span class="CT">         *  Outport: '&lt;Root&gt;/flag_emergencia'</span>
+</span><span><a class="LN" name="80">   80   </a><span class="CT">         *  Outport: '&lt;Root&gt;/vx'</span>
+</span><span><a class="LN" name="81">   81   </a><span class="CT">         *  Outport: '&lt;Root&gt;/vy' *)</span>
+</span><span><a class="LN" name="82">   82   </a>        <span class="CT">(* Gateway: NIVEL 0 *)</span>
+</span><span><a class="LN" name="83">   83   </a>        <span class="CT">(* During: NIVEL 0 *)</span>
+</span><span><a class="LN" name="84">   84   </a>        <span class="KW">IF</span> is_active_c5_NIVEL = 0 <span class="KW">THEN</span> 
+</span><span><a class="LN" name="85">   85   </a>            <span class="CT">(* Entry: NIVEL 0 *)</span>
+</span><span><a class="LN" name="86">   86   </a>            is_active_c5_NIVEL := 1;
+</span><span><a class="LN" name="87">   87   </a>            <span class="CT">(* Entry Internal: NIVEL 0 *)</span>
+</span><span><a class="LN" name="88">   88   </a>            <span class="CT">(* Transition: '<a href="matlab:coder.internal.code2model('nivel0:1:2')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:2</i></font></a>' *)</span>
+</span><span><a class="LN" name="89">   89   </a>            is_c5_NIVEL := NIVEL_IN_NORMAL;
+</span><span><a class="LN" name="90">   90   </a>            <span class="CT">(* Entry Internal 'NORMAL': '<a href="matlab:coder.internal.code2model('nivel0:1:35')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:35</i></font></a>' *)</span>
+</span><span><a class="LN" name="91">   91   </a>            <span class="CT">(* Entry Internal 'CHEQUEO_ERROR': '<a href="matlab:coder.internal.code2model('nivel0:1:47')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:47</i></font></a>' *)</span>
+</span><span><a class="LN" name="92">   92   </a>            <span class="CT">(* Transition: '<a href="matlab:coder.internal.code2model('nivel0:1:37')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:37</i></font></a>' *)</span>
+</span><span><a class="LN" name="93">   93   </a>            is_CHEQUEO_ERROR := b_NIVEL_IN_Normal;
+</span><span><a class="LN" name="94">   94   </a>            <span class="CT">(* Entry 'Normal': '<a href="matlab:coder.internal.code2model('nivel0:1:42')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:42</i></font></a>' *)</span>
+</span><span><a class="LN" name="95">   95   </a>            <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:42:2')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:42:2</i></font></a>' flag_emergencia=0; *)</span>
+</span><span><a class="LN" name="96">   96   </a>            flag_emergencia := 0.0;
+</span><span><a class="LN" name="97">   97   </a>            <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:42:3')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:42:3</i></font></a>' alarmaIz=0; *)</span>
+</span><span><a class="LN" name="98">   98   </a>            alarmaIz := 0.0;
+</span><span><a class="LN" name="99">   99   </a>            <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:42:4')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:42:4</i></font></a>' alarmaC=0; *)</span>
+</span><span><a class="LN" name="100">  100   </a>            alarmaC := 0.0;
+</span><span><a class="LN" name="101">  101   </a>            <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:42:5')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:42:5</i></font></a>' alarmaG=0; *)</span>
+</span><span><a class="LN" name="102">  102   </a>            alarmaG := 0.0;
+</span><span><a class="LN" name="103">  103   </a>            <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:42:6')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:42:6</i></font></a>' flag_control=0; *)</span>
+</span><span><a class="LN" name="104">  104   </a>            flag_control := 0.0;
+</span><span><a class="LN" name="105">  105   </a>            <span class="CT">(* Entry 'WATCHDOG': '<a href="matlab:coder.internal.code2model('nivel0:1:46')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:46</i></font></a>' *)</span>
+</span><span><a class="LN" name="106">  106   </a>            <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:46:3')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:46:3</i></font></a>' alarmaM=0; *)</span>
+</span><span><a class="LN" name="107">  107   </a>            alarmaM := 0.0;
+</span><span><a class="LN" name="108">  108   </a>        <span class="KW">ELSE</span> 
+</span><span><a class="LN" name="109">  109   </a>            <span class="KW">CASE</span> is_c5_NIVEL <span class="KW">OF</span>
+</span><span><a class="LN" name="110">  110   </a>                NIVEL_IN_EMERGENCIA: 
+</span><span><a class="LN" name="111">  111   </a>                    <span class="CT">(* During 'EMERGENCIA': '<a href="matlab:coder.internal.code2model('nivel0:1:3')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:3</i></font></a>' *)</span>
+</span><span><a class="LN" name="112">  112   </a>                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:19:1')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:19:1</i></font></a>' sf_internal_predicateOutput = alarmaM==0&&alarmaG==0&&alarmaC==0&&alarmaIz==0; *)</span>
+</span><span><a class="LN" name="113">  113   </a>                    <span class="KW">IF</span> (((alarmaM = 0.0) <span class="KW">AND</span> (alarmaG = 0.0)) <span class="KW">AND</span> (alarmaC = 0.0)) <span class="KW">AND</span> (alarmaIz = 0.0) <span class="KW">THEN</span> 
+</span><span><a class="LN" name="114">  114   </a>                        <span class="CT">(* Transition: '<a href="matlab:coder.internal.code2model('nivel0:1:19')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:19</i></font></a>' *)</span>
+</span><span><a class="LN" name="115">  115   </a>                        <span class="CT">(* Exit Internal 'EMERGENCIA': '<a href="matlab:coder.internal.code2model('nivel0:1:3')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:3</i></font></a>' *)</span>
+</span><span><a class="LN" name="116">  116   </a>                        <span class="KW">CASE</span> is_EMERGENCIA <span class="KW">OF</span>
+</span><span><a class="LN" name="117">  117   </a>                            NIVEL_IN_ReduVeltransicion1: 
+</span><span><a class="LN" name="118">  118   </a>                                <span class="CT">(* Exit 'ReduVeltransicion1': '<a href="matlab:coder.internal.code2model('nivel0:1:70')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:70</i></font></a>' *)</span>
+</span><span><a class="LN" name="119">  119   </a>                                <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:70:13')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:70:13</i></font></a>' vx = 0 *)</span>
+</span><span><a class="LN" name="120">  120   </a>                                vx := 0.0;
+</span><span><a class="LN" name="121">  121   </a>                                <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:70:14')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:70:14</i></font></a>' vy = 0 *)</span>
+</span><span><a class="LN" name="122">  122   </a>                                vy := 0.0;
+</span><span><a class="LN" name="123">  123   </a>                                is_EMERGENCIA := NIVEL_IN_NO_ACTIVE_CHILD;
+</span><span><a class="LN" name="124">  124   </a>                            <span class="KW">ELSE</span>
+</span><span><a class="LN" name="125">  125   </a>                                is_EMERGENCIA := NIVEL_IN_NO_ACTIVE_CHILD;
+</span><span><a class="LN" name="126">  126   </a>                        <span class="KW">END_CASE</span>;
+</span><span><a class="LN" name="127">  127   </a>                        is_c5_NIVEL := NIVEL_IN_NORMAL;
+</span><span><a class="LN" name="128">  128   </a>                        <span class="CT">(* Entry Internal 'NORMAL': '<a href="matlab:coder.internal.code2model('nivel0:1:35')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:35</i></font></a>' *)</span>
+</span><span><a class="LN" name="129">  129   </a>                        <span class="CT">(* Entry Internal 'CHEQUEO_ERROR': '<a href="matlab:coder.internal.code2model('nivel0:1:47')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:47</i></font></a>' *)</span>
+</span><span><a class="LN" name="130">  130   </a>                        <span class="CT">(* Transition: '<a href="matlab:coder.internal.code2model('nivel0:1:37')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:37</i></font></a>' *)</span>
+</span><span><a class="LN" name="131">  131   </a>                        is_CHEQUEO_ERROR := b_NIVEL_IN_Normal;
+</span><span><a class="LN" name="132">  132   </a>                        <span class="CT">(* Entry 'Normal': '<a href="matlab:coder.internal.code2model('nivel0:1:42')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:42</i></font></a>' *)</span>
+</span><span><a class="LN" name="133">  133   </a>                        <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:42:2')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:42:2</i></font></a>' flag_emergencia=0; *)</span>
+</span><span><a class="LN" name="134">  134   </a>                        flag_emergencia := 0.0;
+</span><span><a class="LN" name="135">  135   </a>                        <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:42:3')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:42:3</i></font></a>' alarmaIz=0; *)</span>
+</span><span><a class="LN" name="136">  136   </a>                        alarmaIz := 0.0;
+</span><span><a class="LN" name="137">  137   </a>                        <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:42:4')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:42:4</i></font></a>' alarmaC=0; *)</span>
+</span><span><a class="LN" name="138">  138   </a>                        alarmaC := 0.0;
+</span><span><a class="LN" name="139">  139   </a>                        <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:42:5')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:42:5</i></font></a>' alarmaG=0; *)</span>
+</span><span><a class="LN" name="140">  140   </a>                        alarmaG := 0.0;
+</span><span><a class="LN" name="141">  141   </a>                        <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:42:6')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:42:6</i></font></a>' flag_control=0; *)</span>
+</span><span><a class="LN" name="142">  142   </a>                        flag_control := 0.0;
+</span><span><a class="LN" name="143">  143   </a>                        <span class="CT">(* Entry 'WATCHDOG': '<a href="matlab:coder.internal.code2model('nivel0:1:46')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:46</i></font></a>' *)</span>
+</span><span><a class="LN" name="144">  144   </a>                        <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:46:3')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:46:3</i></font></a>' alarmaM=0; *)</span>
+</span><span><a class="LN" name="145">  145   </a>                        alarmaM := 0.0;
+</span><span><a class="LN" name="146">  146   </a>                    <span class="KW">ELSE</span> 
+</span><span><a class="LN" name="147">  147   </a>                        <span class="KW">CASE</span> is_EMERGENCIA <span class="KW">OF</span>
+</span><span><a class="LN" name="148">  148   </a>                            NIVEL_IN_Apagar_alarm: 
+</span><span><a class="LN" name="149">  149   </a>                                alarmaIz := 0.0;
+</span><span><a class="LN" name="150">  150   </a>                                <span class="CT">(* During 'Apagar_alarm': '<a href="matlab:coder.internal.code2model('nivel0:1:11')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:11</i></font></a>' *)</span>
+</span><span><a class="LN" name="151">  151   </a>                            NIVEL_IN_EstadoManual: 
+</span><span><a class="LN" name="152">  152   </a>                                flag_emergencia := 1.0;
+</span><span><a class="LN" name="153">  153   </a>                                <span class="CT">(* During 'EstadoManual': '<a href="matlab:coder.internal.code2model('nivel0:1:9')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:9</i></font></a>' *)</span>
+</span><span><a class="LN" name="154">  154   </a>                                <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:27:1')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:27:1</i></font></a>' sf_internal_predicateOutput = FinEmer; *)</span>
+</span><span><a class="LN" name="155">  155   </a>                                <span class="KW">IF</span> FinEmer &lt;&gt; 0.0 <span class="KW">THEN</span> 
+</span><span><a class="LN" name="156">  156   </a>                                    <span class="CT">(* Transition: '<a href="matlab:coder.internal.code2model('nivel0:1:27')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:27</i></font></a>' *)</span>
+</span><span><a class="LN" name="157">  157   </a>                                    is_EMERGENCIA := NIVEL_IN_Apagar_alarm;
+</span><span><a class="LN" name="158">  158   </a>                                    <span class="CT">(* Entry 'Apagar_alarm': '<a href="matlab:coder.internal.code2model('nivel0:1:11')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:11</i></font></a>' *)</span>
+</span><span><a class="LN" name="159">  159   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:11:3')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:11:3</i></font></a>' alarmaIz=0; *)</span>
+</span><span><a class="LN" name="160">  160   </a>                                    alarmaIz := 0.0;
+</span><span><a class="LN" name="161">  161   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:11:4')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:11:4</i></font></a>' alarmaC=0; *)</span>
+</span><span><a class="LN" name="162">  162   </a>                                    alarmaC := 0.0;
+</span><span><a class="LN" name="163">  163   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:11:5')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:11:5</i></font></a>' alarmaG=0; *)</span>
+</span><span><a class="LN" name="164">  164   </a>                                    alarmaG := 0.0;
+</span><span><a class="LN" name="165">  165   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:11:6')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:11:6</i></font></a>' alarmaM=0 *)</span>
+</span><span><a class="LN" name="166">  166   </a>                                    alarmaM := 0.0;
+</span><span><a class="LN" name="167">  167   </a>                                <span class="KW">ELSE</span> 
+</span><span><a class="LN" name="168">  168   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:9:9')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:9:9</i></font></a>' delta_t=time-time_a; *)</span>
+</span><span><a class="LN" name="169">  169   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:9:10')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:9:10</i></font></a>' [vx,vy]=Calc_v(delta_t,vx_a,vy_a,X_com,Y_com); *)</span>
+</span><span><a class="LN" name="170">  170   </a>                                    i0_Calc_v(delta_t1 := b_time - time_a, vx_a1 := vx_a, vy_a1 := vy_a, X_com1 := X_com, Y_com1 := Y_com);
+</span><span><a class="LN" name="171">  171   </a>                                    vx := i0_Calc_v.vx1;
+</span><span><a class="LN" name="172">  172   </a>                                    vy := i0_Calc_v.vy1;
+</span><span><a class="LN" name="173">  173   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:9:11')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:9:11</i></font></a>' time_a=time; *)</span>
+</span><span><a class="LN" name="174">  174   </a>                                    time_a := b_time;
+</span><span><a class="LN" name="175">  175   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:9:12')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:9:12</i></font></a>' vx_a=vx; *)</span>
+</span><span><a class="LN" name="176">  176   </a>                                    vx_a := vx;
+</span><span><a class="LN" name="177">  177   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:9:13')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:9:13</i></font></a>' vy_a=vy; *)</span>
+</span><span><a class="LN" name="178">  178   </a>                                    vy_a := vy;
+</span><span><a class="LN" name="179">  179   </a>                                <span class="KW">END_IF</span>;
+</span><span><a class="LN" name="180">  180   </a>                            <span class="KW">ELSE</span>
+</span><span><a class="LN" name="181">  181   </a>                                flag_control := 1.0;
+</span><span><a class="LN" name="182">  182   </a>                                <span class="CT">(* During 'ReduVeltransicion1': '<a href="matlab:coder.internal.code2model('nivel0:1:70')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:70</i></font></a>' *)</span>
+</span><span><a class="LN" name="183">  183   </a>                                <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:72:1')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:72:1</i></font></a>' sf_internal_predicateOutput = abs(vx)&lt;0.1 && abs(vy)&lt;0.01 && theta&lt;0.05; *)</span>
+</span><span><a class="LN" name="184">  184   </a>                                temp1 := <span class="KW">FALSE</span>;
+</span><span><a class="LN" name="185">  185   </a>                                <span class="KW">IF</span> <span class="KW">ABS</span>(vx) &lt; 0.1 <span class="KW">THEN</span> 
+</span><span><a class="LN" name="186">  186   </a>                                    <span class="KW">IF</span> <span class="KW">ABS</span>(vy) &lt; 0.01 <span class="KW">THEN</span> 
+</span><span><a class="LN" name="187">  187   </a>                                        <span class="KW">IF</span> theta &lt; 0.05 <span class="KW">THEN</span> 
+</span><span><a class="LN" name="188">  188   </a>                                            <span class="CT">(* Transition: '<a href="matlab:coder.internal.code2model('nivel0:1:72')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:72</i></font></a>' *)</span>
+</span><span><a class="LN" name="189">  189   </a>                                            <span class="CT">(* Exit 'ReduVeltransicion1': '<a href="matlab:coder.internal.code2model('nivel0:1:70')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:70</i></font></a>' *)</span>
+</span><span><a class="LN" name="190">  190   </a>                                            <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:70:13')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:70:13</i></font></a>' vx = 0 *)</span>
+</span><span><a class="LN" name="191">  191   </a>                                            vx := 0.0;
+</span><span><a class="LN" name="192">  192   </a>                                            <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:70:14')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:70:14</i></font></a>' vy = 0 *)</span>
+</span><span><a class="LN" name="193">  193   </a>                                            vy := 0.0;
+</span><span><a class="LN" name="194">  194   </a>                                            is_EMERGENCIA := NIVEL_IN_EstadoManual;
+</span><span><a class="LN" name="195">  195   </a>                                            <span class="CT">(* Entry 'EstadoManual': '<a href="matlab:coder.internal.code2model('nivel0:1:9')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:9</i></font></a>' *)</span>
+</span><span><a class="LN" name="196">  196   </a>                                            <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:9:3')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:9:3</i></font></a>' time_a=time; *)</span>
+</span><span><a class="LN" name="197">  197   </a>                                            time_a := b_time;
+</span><span><a class="LN" name="198">  198   </a>                                            <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:9:4')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:9:4</i></font></a>' vx_a=0; *)</span>
+</span><span><a class="LN" name="199">  199   </a>                                            vx_a := 0.0;
+</span><span><a class="LN" name="200">  200   </a>                                            <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:9:5')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:9:5</i></font></a>' vy_a=0; *)</span>
+</span><span><a class="LN" name="201">  201   </a>                                            vy_a := 0.0;
+</span><span><a class="LN" name="202">  202   </a>                                            <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:9:6')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:9:6</i></font></a>' delta_t=0; *)</span>
+</span><span><a class="LN" name="203">  203   </a>                                            <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:9:7')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:9:7</i></font></a>' flag_emergencia=1; *)</span>
+</span><span><a class="LN" name="204">  204   </a>                                            flag_emergencia := 1.0;
+</span><span><a class="LN" name="205">  205   </a>                                        <span class="KW">ELSE</span> 
+</span><span><a class="LN" name="206">  206   </a>                                            temp1 := <span class="KW">TRUE</span>;
+</span><span><a class="LN" name="207">  207   </a>                                        <span class="KW">END_IF</span>;
+</span><span><a class="LN" name="208">  208   </a>                                    <span class="KW">ELSE</span> 
+</span><span><a class="LN" name="209">  209   </a>                                        temp1 := <span class="KW">TRUE</span>;
+</span><span><a class="LN" name="210">  210   </a>                                    <span class="KW">END_IF</span>;
+</span><span><a class="LN" name="211">  211   </a>                                <span class="KW">ELSE</span> 
+</span><span><a class="LN" name="212">  212   </a>                                    temp1 := <span class="KW">TRUE</span>;
+</span><span><a class="LN" name="213">  213   </a>                                <span class="KW">END_IF</span>;
+</span><span><a class="LN" name="214">  214   </a>                                <span class="KW">IF</span> temp1 <span class="KW">THEN</span> 
+</span><span><a class="LN" name="215">  215   </a>                                    <span class="CT">(* Outport: '&lt;Root&gt;/vy' *)</span>
+</span><span><a class="LN" name="216">  216   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:70:9')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:70:9</i></font></a>' delta_t=time-time_a; *)</span>
+</span><span><a class="LN" name="217">  217   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:70:10')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:70:10</i></font></a>' [vx,vy]=Calc_v1(delta_t,vx,vy) *)</span>
+</span><span><a class="LN" name="218">  218   </a>                                    i0_Calc_v1(delta_t2 := b_time - time_a, vx_a2 := vx, vy_a2 := vy);
+</span><span><a class="LN" name="219">  219   </a>                                    vx := i0_Calc_v1.vx2;
+</span><span><a class="LN" name="220">  220   </a>                                    vy := i0_Calc_v1.vy2;
+</span><span><a class="LN" name="221">  221   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:70:11')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:70:11</i></font></a>' time_a=time; *)</span>
+</span><span><a class="LN" name="222">  222   </a>                                    time_a := b_time;
+</span><span><a class="LN" name="223">  223   </a>                                <span class="KW">END_IF</span>;
+</span><span><a class="LN" name="224">  224   </a>                        <span class="KW">END_CASE</span>;
+</span><span><a class="LN" name="225">  225   </a>                    <span class="KW">END_IF</span>;
+</span><span><a class="LN" name="226">  226   </a>                <span class="KW">ELSE</span>
+</span><span><a class="LN" name="227">  227   </a>                    <span class="CT">(* During 'NORMAL': '<a href="matlab:coder.internal.code2model('nivel0:1:35')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:35</i></font></a>' *)</span>
+</span><span><a class="LN" name="228">  228   </a>                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:18:1')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:18:1</i></font></a>' sf_internal_predicateOutput = alarmaM||alarmaG||alarmaC||alarmaIz; *)</span>
+</span><span><a class="LN" name="229">  229   </a>                    <span class="KW">IF</span> (((alarmaM &lt;&gt; 0.0) <span class="KW">OR</span> (alarmaG &lt;&gt; 0.0)) <span class="KW">OR</span> (alarmaC &lt;&gt; 0.0)) <span class="KW">OR</span> (alarmaIz &lt;&gt; 0.0) <span class="KW">THEN</span> 
+</span><span><a class="LN" name="230">  230   </a>                        <span class="CT">(* Transition: '<a href="matlab:coder.internal.code2model('nivel0:1:18')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:18</i></font></a>' *)</span>
+</span><span><a class="LN" name="231">  231   </a>                        <span class="CT">(* Exit Internal 'NORMAL': '<a href="matlab:coder.internal.code2model('nivel0:1:35')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:35</i></font></a>' *)</span>
+</span><span><a class="LN" name="232">  232   </a>                        <span class="CT">(* Exit Internal 'CHEQUEO_ERROR': '<a href="matlab:coder.internal.code2model('nivel0:1:47')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:47</i></font></a>' *)</span>
+</span><span><a class="LN" name="233">  233   </a>                        is_CHEQUEO_ERROR := NIVEL_IN_NO_ACTIVE_CHILD;
+</span><span><a class="LN" name="234">  234   </a>                        is_c5_NIVEL := NIVEL_IN_EMERGENCIA;
+</span><span><a class="LN" name="235">  235   </a>                        <span class="CT">(* Entry Internal 'EMERGENCIA': '<a href="matlab:coder.internal.code2model('nivel0:1:3')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:3</i></font></a>' *)</span>
+</span><span><a class="LN" name="236">  236   </a>                        <span class="CT">(* Transition: '<a href="matlab:coder.internal.code2model('nivel0:1:71')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:71</i></font></a>' *)</span>
+</span><span><a class="LN" name="237">  237   </a>                        is_EMERGENCIA := NIVEL_IN_ReduVeltransicion1;
+</span><span><a class="LN" name="238">  238   </a>                        <span class="CT">(* Entry 'ReduVeltransicion1': '<a href="matlab:coder.internal.code2model('nivel0:1:70')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:70</i></font></a>' *)</span>
+</span><span><a class="LN" name="239">  239   </a>                        <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:70:3')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:70:3</i></font></a>' flag_control=1; *)</span>
+</span><span><a class="LN" name="240">  240   </a>                        flag_control := 1.0;
+</span><span><a class="LN" name="241">  241   </a>                        <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:70:4')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:70:4</i></font></a>' time_a=time; *)</span>
+</span><span><a class="LN" name="242">  242   </a>                        time_a := b_time;
+</span><span><a class="LN" name="243">  243   </a>                        <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:70:5')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:70:5</i></font></a>' delta_t=0; *)</span>
+</span><span><a class="LN" name="244">  244   </a>                        <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:70:6')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:70:6</i></font></a>' vx=vc; *)</span>
+</span><span><a class="LN" name="245">  245   </a>                        vx := vc;
+</span><span><a class="LN" name="246">  246   </a>                        <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:70:7')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:70:7</i></font></a>' vy=vi; *)</span>
+</span><span><a class="LN" name="247">  247   </a>                        vy := vi;
+</span><span><a class="LN" name="248">  248   </a>                    <span class="KW">ELSE</span> 
+</span><span><a class="LN" name="249">  249   </a>                        <span class="CT">(* During 'CHEQUEO_ERROR': '<a href="matlab:coder.internal.code2model('nivel0:1:47')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:47</i></font></a>' *)</span>
+</span><span><a class="LN" name="250">  250   </a>                        <span class="KW">CASE</span> is_CHEQUEO_ERROR <span class="KW">OF</span>
+</span><span><a class="LN" name="251">  251   </a>                            NIVEL_IN_ErrorCarro: 
+</span><span><a class="LN" name="252">  252   </a>                                <span class="CT">(* During 'ErrorCarro': '<a href="matlab:coder.internal.code2model('nivel0:1:44')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:44</i></font></a>' *)</span>
+</span><span><a class="LN" name="253">  253   </a>                                <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:41:1')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:41:1</i></font></a>' sf_internal_predicateOutput = [FCi||vMi&lt;vi]; *)</span>
+</span><span><a class="LN" name="254">  254   </a>                                <span class="KW">IF</span> (FCi &lt;&gt; 0.0) <span class="KW">OR</span> (vMi &lt; vi) <span class="KW">THEN</span> 
+</span><span><a class="LN" name="255">  255   </a>                                    <span class="CT">(* Transition: '<a href="matlab:coder.internal.code2model('nivel0:1:41')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:41</i></font></a>' *)</span>
+</span><span><a class="LN" name="256">  256   </a>                                    is_CHEQUEO_ERROR := NIVEL_IN_ErrorGeneral;
+</span><span><a class="LN" name="257">  257   </a>                                    <span class="CT">(* Entry 'ErrorGeneral': '<a href="matlab:coder.internal.code2model('nivel0:1:45')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:45</i></font></a>' *)</span>
+</span><span><a class="LN" name="258">  258   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:45:2')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:45:2</i></font></a>' alarmaG=1; *)</span>
+</span><span><a class="LN" name="259">  259   </a>                                    alarmaG := 1.0;
+</span><span><a class="LN" name="260">  260   </a>                                <span class="KW">ELSE</span> 
+</span><span><a class="LN" name="261">  261   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:44:2')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:44:2</i></font></a>' alarmaC=1; *)</span>
+</span><span><a class="LN" name="262">  262   </a>                                    alarmaC := 1.0;
+</span><span><a class="LN" name="263">  263   </a>                                <span class="KW">END_IF</span>;
+</span><span><a class="LN" name="264">  264   </a>                            NIVEL_IN_ErrorGeneral: 
+</span><span><a class="LN" name="265">  265   </a>                                <span class="CT">(* During 'ErrorGeneral': '<a href="matlab:coder.internal.code2model('nivel0:1:45')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:45</i></font></a>' *)</span>
+</span><span><a class="LN" name="266">  266   </a>                                <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:45:2')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:45:2</i></font></a>' alarmaG=1; *)</span>
+</span><span><a class="LN" name="267">  267   </a>                                alarmaG := 1.0;
+</span><span><a class="LN" name="268">  268   </a>                            NIVEL_IN_ErrorIzaje: 
+</span><span><a class="LN" name="269">  269   </a>                                alarmaIz := 1.0;
+</span><span><a class="LN" name="270">  270   </a>                                <span class="CT">(* During 'ErrorIzaje': '<a href="matlab:coder.internal.code2model('nivel0:1:43')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:43</i></font></a>' *)</span>
+</span><span><a class="LN" name="271">  271   </a>                                <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:40:1')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:40:1</i></font></a>' sf_internal_predicateOutput = [FCxc_80 || FCxc_0 || vc&gt;4]; *)</span>
+</span><span><a class="LN" name="272">  272   </a>                                <span class="KW">IF</span> ((FCxc_80 &lt;&gt; 0.0) <span class="KW">OR</span> (FCxc_0 &lt;&gt; 0.0)) <span class="KW">OR</span> (vc &gt; 4.0) <span class="KW">THEN</span> 
+</span><span><a class="LN" name="273">  273   </a>                                    <span class="CT">(* Transition: '<a href="matlab:coder.internal.code2model('nivel0:1:40')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:40</i></font></a>' *)</span>
+</span><span><a class="LN" name="274">  274   </a>                                    is_CHEQUEO_ERROR := NIVEL_IN_ErrorGeneral;
+</span><span><a class="LN" name="275">  275   </a>                                    <span class="CT">(* Entry 'ErrorGeneral': '<a href="matlab:coder.internal.code2model('nivel0:1:45')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:45</i></font></a>' *)</span>
+</span><span><a class="LN" name="276">  276   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:45:2')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:45:2</i></font></a>' alarmaG=1; *)</span>
+</span><span><a class="LN" name="277">  277   </a>                                    alarmaG := 1.0;
+</span><span><a class="LN" name="278">  278   </a>                                <span class="KW">END_IF</span>;
+</span><span><a class="LN" name="279">  279   </a>                            <span class="KW">ELSE</span>
+</span><span><a class="LN" name="280">  280   </a>                                flag_emergencia := 0.0;
+</span><span><a class="LN" name="281">  281   </a>                                alarmaIz := 0.0;
+</span><span><a class="LN" name="282">  282   </a>                                flag_control := 0.0;
+</span><span><a class="LN" name="283">  283   </a>                                <span class="CT">(* During 'Normal': '<a href="matlab:coder.internal.code2model('nivel0:1:42')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:42</i></font></a>' *)</span>
+</span><span><a class="LN" name="284">  284   </a>                                <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:38:1')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:38:1</i></font></a>' sf_internal_predicateOutput = FCi||vMi&lt;vi; *)</span>
+</span><span><a class="LN" name="285">  285   </a>                                <span class="KW">IF</span> (FCi &lt;&gt; 0.0) <span class="KW">OR</span> (vMi &lt; vi) <span class="KW">THEN</span> 
+</span><span><a class="LN" name="286">  286   </a>                                    <span class="CT">(* Transition: '<a href="matlab:coder.internal.code2model('nivel0:1:38')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:38</i></font></a>' *)</span>
+</span><span><a class="LN" name="287">  287   </a>                                    is_CHEQUEO_ERROR := NIVEL_IN_ErrorIzaje;
+</span><span><a class="LN" name="288">  288   </a>                                    <span class="CT">(* Entry 'ErrorIzaje': '<a href="matlab:coder.internal.code2model('nivel0:1:43')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:43</i></font></a>' *)</span>
+</span><span><a class="LN" name="289">  289   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:43:3')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:43:3</i></font></a>' alarmaIz=1; *)</span>
+</span><span><a class="LN" name="290">  290   </a>                                    alarmaIz := 1.0;
+</span><span><a class="LN" name="291">  291   </a>                                <span class="KW">ELSE</span> 
+</span><span><a class="LN" name="292">  292   </a>                                    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:39:1')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:39:1</i></font></a>' sf_internal_predicateOutput = FCxc_80 || FCxc_0 || vc&gt;4; *)</span>
+</span><span><a class="LN" name="293">  293   </a>                                    <span class="KW">IF</span> ((FCxc_80 &lt;&gt; 0.0) <span class="KW">OR</span> (FCxc_0 &lt;&gt; 0.0)) <span class="KW">OR</span> (vc &gt; 4.0) <span class="KW">THEN</span> 
+</span><span><a class="LN" name="294">  294   </a>                                        <span class="CT">(* Transition: '<a href="matlab:coder.internal.code2model('nivel0:1:39')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:39</i></font></a>' *)</span>
+</span><span><a class="LN" name="295">  295   </a>                                        is_CHEQUEO_ERROR := NIVEL_IN_ErrorCarro;
+</span><span><a class="LN" name="296">  296   </a>                                        <span class="CT">(* Entry 'ErrorCarro': '<a href="matlab:coder.internal.code2model('nivel0:1:44')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:44</i></font></a>' *)</span>
+</span><span><a class="LN" name="297">  297   </a>                                        <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:44:2')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:44:2</i></font></a>' alarmaC=1; *)</span>
+</span><span><a class="LN" name="298">  298   </a>                                        alarmaC := 1.0;
+</span><span><a class="LN" name="299">  299   </a>                                    <span class="KW">END_IF</span>;
+</span><span><a class="LN" name="300">  300   </a>                                <span class="KW">END_IF</span>;
+</span><span><a class="LN" name="301">  301   </a>                        <span class="KW">END_CASE</span>;
+</span><span><a class="LN" name="302">  302   </a>                        <span class="CT">(* During 'WATCHDOG': '<a href="matlab:coder.internal.code2model('nivel0:1:46')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:46</i></font></a>' *)</span>
+</span><span><a class="LN" name="303">  303   </a>                        <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:46:5')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:46:5</i></font></a>' if(S_e1==0) *)</span>
+</span><span><a class="LN" name="304">  304   </a>                        <span class="KW">IF</span> S_e1 = 0.0 <span class="KW">THEN</span> 
+</span><span><a class="LN" name="305">  305   </a>                            <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:46:6')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:46:6</i></font></a>' alarmaM=1; *)</span>
+</span><span><a class="LN" name="306">  306   </a>                            alarmaM := 1.0;
+</span><span><a class="LN" name="307">  307   </a>                        <span class="KW">END_IF</span>;
+</span><span><a class="LN" name="308">  308   </a>                        <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:46:8')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:46:8</i></font></a>' if(S_e2==0) *)</span>
+</span><span><a class="LN" name="309">  309   </a>                        <span class="KW">IF</span> S_e2 = 0.0 <span class="KW">THEN</span> 
+</span><span><a class="LN" name="310">  310   </a>                            <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:46:9')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:46:9</i></font></a>' alarmaM=1; *)</span>
+</span><span><a class="LN" name="311">  311   </a>                            alarmaM := 1.0;
+</span><span><a class="LN" name="312">  312   </a>                        <span class="KW">END_IF</span>;
+</span><span><a class="LN" name="313">  313   </a>                        <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:46:11')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:46:11</i></font></a>' if(S_e3==0) *)</span>
+</span><span><a class="LN" name="314">  314   </a>                        <span class="KW">IF</span> S_e3 = 0.0 <span class="KW">THEN</span> 
+</span><span><a class="LN" name="315">  315   </a>                            <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:46:12')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:46:12</i></font></a>' alarmaM=1; *)</span>
+</span><span><a class="LN" name="316">  316   </a>                            alarmaM := 1.0;
+</span><span><a class="LN" name="317">  317   </a>                        <span class="KW">END_IF</span>;
+</span><span><a class="LN" name="318">  318   </a>                    <span class="KW">END_IF</span>;
+</span><span><a class="LN" name="319">  319   </a>            <span class="KW">END_CASE</span>;
+</span><span><a class="LN" name="320">  320   </a>        <span class="KW">END_IF</span>;
+</span><span><a class="LN" name="321">  321   </a>        <span class="CT">(* End of Chart: '&lt;Root&gt;/NIVEL 0' *)</span>
+</span><span><a class="LN" name="322">  322   </a><span class="KW">END_CASE</span>;
+</span><span><a class="LN" name="323">  323   </a><span class="KW">END_FUNCTION_BLOCK</span>
+</span><span><a class="LN" name="324">  324   </a><span class="KW">FUNCTION_BLOCK</span> Calc_v1
+</span><span><a class="LN" name="325">  325   </a><span class="KW">VAR_INPUT</span>
+</span><span><a class="LN" name="326">  326   </a>    delta_t2: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="327">  327   </a>    vx_a2: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="328">  328   </a>    vy_a2: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="329">  329   </a><span class="KW">END_VAR</span>
+</span><span><a class="LN" name="330">  330   </a><span class="KW">VAR_OUTPUT</span>
+</span><span><a class="LN" name="331">  331   </a>    vx2: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="332">  332   </a>    vy2: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="333">  333   </a><span class="KW">END_VAR</span>
+</span><span><a class="LN" name="334">  334   </a><span class="CT">(* MATLAB Function 'Calc_v1': '<a href="matlab:coder.internal.code2model('nivel0:1:69')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:69</i></font></a>' *)</span>
+</span><span><a class="LN" name="335">  335   </a><span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:69:2')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:69:2</i></font></a>' if (vx_a2 &lt; 0 ) *)</span>
+</span><span><a class="LN" name="336">  336   </a><span class="KW">IF</span> vx_a2 &lt; 0.0 <span class="KW">THEN</span> 
+</span><span><a class="LN" name="337">  337   </a>    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:69:3')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:69:3</i></font></a>' vx2=0.2*(delta_t2)+vx_a2; *)</span>
+</span><span><a class="LN" name="338">  338   </a>    vx2 := (0.2 * delta_t2) + vx_a2;
+</span><span><a class="LN" name="339">  339   </a><span class="KW">ELSE</span> 
+</span><span><a class="LN" name="340">  340   </a>    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:69:4')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:69:4</i></font></a>' else *)</span>
+</span><span><a class="LN" name="341">  341   </a>    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:69:5')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:69:5</i></font></a>' vx2=-0.2*(delta_t2)+vx_a2; *)</span>
+</span><span><a class="LN" name="342">  342   </a>    vx2 := (-0.2 * delta_t2) + vx_a2;
+</span><span><a class="LN" name="343">  343   </a><span class="KW">END_IF</span>;
+</span><span><a class="LN" name="344">  344   </a><span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:69:7')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:69:7</i></font></a>' if (vy_a2 &lt; 0) *)</span>
+</span><span><a class="LN" name="345">  345   </a><span class="KW">IF</span> vy_a2 &lt; 0.0 <span class="KW">THEN</span> 
+</span><span><a class="LN" name="346">  346   </a>    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:69:8')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:69:8</i></font></a>' vy2=0.2*(delta_t2)+vy_a2 *)</span>
+</span><span><a class="LN" name="347">  347   </a>    vy2 := (0.2 * delta_t2) + vy_a2;
+</span><span><a class="LN" name="348">  348   </a><span class="KW">ELSE</span> 
+</span><span><a class="LN" name="349">  349   </a>    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:69:9')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:69:9</i></font></a>' else *)</span>
+</span><span><a class="LN" name="350">  350   </a>    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:69:10')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:69:10</i></font></a>' vy2=-0.2*(delta_t2)+vy_a2 *)</span>
+</span><span><a class="LN" name="351">  351   </a>    vy2 := (-0.2 * delta_t2) + vy_a2;
+</span><span><a class="LN" name="352">  352   </a><span class="KW">END_IF</span>;
+</span><span><a class="LN" name="353">  353   </a><span class="KW">END_FUNCTION_BLOCK</span>
+</span><span><a class="LN" name="354">  354   </a><span class="KW">FUNCTION_BLOCK</span> Calc_v
+</span><span><a class="LN" name="355">  355   </a><span class="KW">VAR_INPUT</span>
+</span><span><a class="LN" name="356">  356   </a>    delta_t1: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="357">  357   </a>    vx_a1: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="358">  358   </a>    vy_a1: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="359">  359   </a>    X_com1: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="360">  360   </a>    Y_com1: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="361">  361   </a><span class="KW">END_VAR</span>
+</span><span><a class="LN" name="362">  362   </a><span class="KW">VAR_OUTPUT</span>
+</span><span><a class="LN" name="363">  363   </a>    vx1: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="364">  364   </a>    vy1: <span class="KW">LREAL</span>;
+</span><span><a class="LN" name="365">  365   </a><span class="KW">END_VAR</span>
+</span><span><a class="LN" name="366">  366   </a><span class="CT">(* MATLAB Function 'Calc_v': '<a href="matlab:coder.internal.code2model('nivel0:1:99')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:99</i></font></a>' *)</span>
+</span><span><a class="LN" name="367">  367   </a><span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:99:2')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:99:2</i></font></a>' if (X_com1 == 29 && vx_a1&lt;4) *)</span>
+</span><span><a class="LN" name="368">  368   </a><span class="KW">IF</span> (X_com1 = 29.0) <span class="KW">AND</span> (vx_a1 &lt; 4.0) <span class="KW">THEN</span> 
+</span><span><a class="LN" name="369">  369   </a>    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:99:3')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:99:3</i></font></a>' vx1=0.8*(delta_t1)+vx_a1; *)</span>
+</span><span><a class="LN" name="370">  370   </a>    vx1 := (0.8 * delta_t1) + vx_a1;
+</span><span><a class="LN" name="371">  371   </a><span class="KW">ELSIF</span> (X_com1 = 28.0) <span class="KW">AND</span> (vx_a1 &gt; -4.0) <span class="KW">THEN</span> 
+</span><span><a class="LN" name="372">  372   </a>    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:99:4')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:99:4</i></font></a>' elseif (X_com1 == 28 && vx_a1 &gt; -4 ) *)</span>
+</span><span><a class="LN" name="373">  373   </a>    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:99:5')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:99:5</i></font></a>' vx1=-0.8*(delta_t1)+vx_a1; *)</span>
+</span><span><a class="LN" name="374">  374   </a>    vx1 := (-0.8 * delta_t1) + vx_a1;
+</span><span><a class="LN" name="375">  375   </a><span class="KW">ELSE</span> 
+</span><span><a class="LN" name="376">  376   </a>    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:99:6')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:99:6</i></font></a>' else *)</span>
+</span><span><a class="LN" name="377">  377   </a>    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:99:7')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:99:7</i></font></a>' vx1=vx_a1; *)</span>
+</span><span><a class="LN" name="378">  378   </a>    vx1 := vx_a1;
+</span><span><a class="LN" name="379">  379   </a><span class="KW">END_IF</span>;
+</span><span><a class="LN" name="380">  380   </a><span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:99:9')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:99:9</i></font></a>' if (Y_com1 == 31 && vy_a1&lt;1.5) *)</span>
+</span><span><a class="LN" name="381">  381   </a><span class="KW">IF</span> (Y_com1 = 31.0) <span class="KW">AND</span> (vy_a1 &lt; 1.5) <span class="KW">THEN</span> 
+</span><span><a class="LN" name="382">  382   </a>    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:99:10')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:99:10</i></font></a>' vy1=0.8*(delta_t1)+vy_a1 *)</span>
+</span><span><a class="LN" name="383">  383   </a>    vy1 := (0.8 * delta_t1) + vy_a1;
+</span><span><a class="LN" name="384">  384   </a><span class="KW">ELSIF</span> (Y_com1 = 30.0) <span class="KW">AND</span> (vy_a1 &gt; -1.5) <span class="KW">THEN</span> 
+</span><span><a class="LN" name="385">  385   </a>    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:99:11')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:99:11</i></font></a>' elseif (Y_com1==30 && vy_a1&gt;-1.5) *)</span>
+</span><span><a class="LN" name="386">  386   </a>    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:99:12')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:99:12</i></font></a>' vy1=-0.8*(delta_t1)+vy_a1 *)</span>
+</span><span><a class="LN" name="387">  387   </a>    vy1 := (-0.8 * delta_t1) + vy_a1;
+</span><span><a class="LN" name="388">  388   </a><span class="KW">ELSE</span> 
+</span><span><a class="LN" name="389">  389   </a>    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:99:13')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:99:13</i></font></a>' else *)</span>
+</span><span><a class="LN" name="390">  390   </a>    <span class="CT">(* '<a href="matlab:coder.internal.code2model('nivel0:1:99:14')" name="code2model"><font color="#117755"><i>&lt;S1&gt;:99:14</i></font></a>' vy1=vy_a1 *)</span>
+</span><span><a class="LN" name="391">  391   </a>    vy1 := vy_a1;
+</span><span><a class="LN" name="392">  392   </a><span class="KW">END_IF</span>;
+</span><span><a class="LN" name="393">  393   </a><span class="KW">END_FUNCTION_BLOCK</span>
+</span><span><a class="LN" name="394">  394   </a><span class="KW">VAR_GLOBAL</span> <span class="KW">CONSTANT</span>
+</span><span><a class="LN" name="395">  395   </a>    NIVEL_IN_NO_ACTIVE_CHILD: <span class="KW">USINT</span> := 0;
+</span><span><a class="LN" name="396">  396   </a>    NIVEL_IN_EMERGENCIA: <span class="KW">USINT</span> := 1;
+</span><span><a class="LN" name="397">  397   </a>    NIVEL_IN_NORMAL: <span class="KW">USINT</span> := 2;
+</span><span><a class="LN" name="398">  398   </a>    NIVEL_IN_ErrorCarro: <span class="KW">USINT</span> := 1;
+</span><span><a class="LN" name="399">  399   </a>    NIVEL_IN_ErrorGeneral: <span class="KW">USINT</span> := 2;
+</span><span><a class="LN" name="400">  400   </a>    NIVEL_IN_ErrorIzaje: <span class="KW">USINT</span> := 3;
+</span><span><a class="LN" name="401">  401   </a>    b_NIVEL_IN_Normal: <span class="KW">USINT</span> := 4;
+</span><span><a class="LN" name="402">  402   </a>    NIVEL_IN_Apagar_alarm: <span class="KW">USINT</span> := 1;
+</span><span><a class="LN" name="403">  403   </a>    NIVEL_IN_EstadoManual: <span class="KW">USINT</span> := 2;
+</span><span><a class="LN" name="404">  404   </a>    NIVEL_IN_ReduVeltransicion1: <span class="KW">USINT</span> := 3;
+</span><span><a class="LN" name="405">  405   </a>    SS_INITIALIZE: <span class="KW">SINT</span> := 0;
+</span><span><a class="LN" name="406">  406   </a>    SS_STEP: <span class="KW">SINT</span> := 1;
+</span><span><a class="LN" name="407">  407   </a><span class="KW">END_VAR</span>
+</span><span><a class="LN" name="408">  408   </a>
+</span></pre>
+</td></tr></table>
+</p>
+</body>
+</html>
