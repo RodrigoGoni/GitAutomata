@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HarnessInformation>
+  <ModelMetadata>
+    <P Name="ModelUUID">51f85d11-2a4e-4c03-a630-4c9b6ab64441</P>
+    <P Name="OwnerBDName">Modelo8</P>
+  </ModelMetadata>
+  <Harness>
+    <P Name="Name">Modelo8_Harness1</P>
+    <P Name="Description"/>
+    <P Name="CreatedBy">GoniR</P>
+    <P Name="CreatedOn">Sat Feb 05 13:45:33 2022</P>
+    <P Name="ModifiedBy">GoniR</P>
+    <P Name="LastSaved">Sat Feb 05 13:45:33 2022</P>
+    <P Name="Owner">679</P>
+    <P Name="OwnerType">SS_HARNESS</P>
+    <P Name="OwnerPath">NIVEL 1</P>
+    <P Name="Directory"/>
+    <P Name="FileName">Modelo8_Harness1.slx</P>
+    <P Name="SavedVersion">10.2</P>
+    <P Name="HarnessUUID">419494b2-b488-4bcc-9cd6-24a36a231e78</P>
+    <P Name="HarnessConnectionsMap">0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18|0,1,2,3,4,5,6,7,8,9,10|0,0,0,0||</P>
+    <P Name="VerificationMode">0</P>
+    <P Name="HarnessOwnerCheckSum">0,0,0,0</P>
+    <P Name="RebuildOnOpen">false</P>
+    <P Name="RebuildModelData">false</P>
+    <P Name="Graphical">false</P>
+    <P Name="DriveFcnCallWithTS">true</P>
+    <P Name="ScheduleInitTermReset">false</P>
+    <P Name="AutoShapeInputs">false</P>
+    <P Name="SLDVCompatible">no</P>
+    <P Name="SynchronizationMode">0</P>
+    <P Name="IsImported">false</P>
+    <P Name="PostRebuildCB"/>
+    <P Name="IsCodeContext">false</P>
+    <P Name="SchedulerBlock">1</P>
+    <P Name="SourceTypeString">Inport</P>
+    <P Name="SinkTypeString">Outport</P>
+    <P Name="CustomSourcePath"/>
+    <P Name="CustomSinkPath"/>
+    <P Name="BlockSIDs">32|110|0|0|0|0|0</P>
+    <P Name="OpenGraphs"/>
+    <P Name="ExistingBuildFolder"/>
+    <P Name="FunctionInterfaceName"/>
+  </Harness>
+  <Harness>
+    <P Name="Name">Modelo8_Harness2</P>
+    <P Name="Description"/>
+    <P Name="CreatedBy">GoniR</P>
+    <P Name="CreatedOn">Sat Feb 05 13:46:55 2022</P>
+    <P Name="ModifiedBy">GoniR</P>
+    <P Name="LastSaved">Sat Feb 05 13:46:58 2022</P>
+    <P Name="Owner">679</P>
+    <P Name="OwnerType">SS_HARNESS</P>
+    <P Name="OwnerPath">NIVEL 1</P>
+    <P Name="Directory"/>
+    <P Name="FileName">Modelo8_Harness2.slx</P>
+    <P Name="SavedVersion">10.2</P>
+    <P Name="HarnessUUID">a1c9a0e4-db98-4ecb-ac35-ccc5ef4ac1ed</P>
+    <P Name="HarnessConnectionsMap">0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18|0,1,2,3,4,5,6,7,8,9,10|0,0,0,0||</P>
+    <P Name="VerificationMode">0</P>
+    <P Name="HarnessOwnerCheckSum">0,0,0,0</P>
+    <P Name="RebuildOnOpen">false</P>
+    <P Name="RebuildModelData">false</P>
+    <P Name="Graphical">false</P>
+    <P Name="DriveFcnCallWithTS">true</P>
+    <P Name="ScheduleInitTermReset">false</P>
+    <P Name="AutoShapeInputs">false</P>
+    <P Name="SLDVCompatible">no</P>
+    <P Name="SynchronizationMode">0</P>
+    <P Name="IsImported">false</P>
+    <P Name="PostRebuildCB"/>
+    <P Name="IsCodeContext">false</P>
+    <P Name="SchedulerBlock">1</P>
+    <P Name="SourceTypeString">Test Sequence</P>
+    <P Name="SinkTypeString">Test Assessment</P>
+    <P Name="CustomSourcePath"/>
+    <P Name="CustomSinkPath"/>
+    <P Name="BlockSIDs">32|154|0|0|0|244|0</P>
+    <P Name="OpenGraphs"/>
+    <P Name="ExistingBuildFolder"/>
+    <P Name="FunctionInterfaceName"/>
+  </Harness>
+</HarnessInformation>

@@ -1,0 +1,57 @@
+[System]
+Name='Control3'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=15
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='theta'
+Range=[-0.03 0.03]
+NumMFs=5
+MF1='AN':'trimf',[-0.045 -0.03 -0.01]
+MF2='N':'trimf',[-0.0205 -0.01 -0.0005]
+MF3='Z':'trimf',[-0.0105 0 0.0105]
+MF4='P':'trimf',[0.0005 0.01001 0.02051]
+MF5='AP':'trimf',[0.01001 0.03 0.045]
+
+[Input2]
+Name='dtheta'
+Range=[-0.03 0.03]
+NumMFs=3
+MF1='N':'trimf',[-0.06 -0.03 -0.00075]
+MF2='Z':'trimf',[-0.01873 0 0.01873]
+MF3='P':'trimf',[0.00075 0.03 0.06]
+
+[Output1]
+Name='K_control_carro'
+Range=[0 1]
+NumMFs=5
+MF1='MB':'trimf',[-0.25 0 0.2873]
+MF2='B':'trimf',[0.06663 0.2873 0.5]
+MF3='M':'trimf',[0.2873 0.5 0.7174]
+MF4='A':'trimf',[0.5 0.7174 0.9334]
+MF5='MA':'trimf',[0.7174 1 1.254]
+
+[Rules]
+1 1, 1 (1) : 1
+2 1, 2 (1) : 1
+3 1, 3 (1) : 1
+4 1, 4 (1) : 1
+5 1, 5 (1) : 1
+1 2, 3 (1) : 1
+2 2, 4 (1) : 1
+3 2, 5 (1) : 1
+4 2, 4 (1) : 1
+5 2, 3 (1) : 1
+1 3, 5 (1) : 1
+2 3, 4 (1) : 1
+3 3, 3 (1) : 1
+4 3, 2 (1) : 1
+5 3, 1 (1) : 1

@@ -13,31 +13,31 @@ DefuzzMethod='centroid'
 
 [Input1]
 Name='theta'
-Range=[-0.18 0.18]
+Range=[-0.06 0.06]
 NumMFs=5
-MF1='AN':'trimf',[-0.27 -0.18 -0.06]
-MF2='N':'trimf',[-0.123 -0.06 -0.003]
-MF3='Z':'trimf',[-0.063 0 0.063]
-MF4='P':'trimf',[0.003 0.06 0.123]
-MF5='AP':'trimf',[0.06 0.18 0.27]
+MF1='AN':'trimf',[-0.09 -0.06 -0.02]
+MF2='N':'trimf',[-0.041 -0.02 -0.001]
+MF3='Z':'trimf',[-0.021 0 0.021]
+MF4='P':'trimf',[0.001 0.02 0.041]
+MF5='AP':'trimf',[0.02 0.06 0.09]
 
 [Input2]
 Name='dtheta'
-Range=[-0.01 0.01]
+Range=[-0.05 0.05]
 NumMFs=3
-MF1='N':'trimf',[-0.02 -0.01 -0.00025]
-MF2='Z':'trimf',[-0.006247 0 0.006247]
-MF3='P':'trimf',[0.00025 0.01 0.02]
+MF1='N':'trimf',[-0.1 -0.05 -0.00125]
+MF2='Z':'trimf',[-0.03123 0 0.03123]
+MF3='P':'trimf',[0.00125 0.05 0.1]
 
 [Output1]
 Name='K_control_carro'
-Range=[0 1]
+Range=[0.5 1]
 NumMFs=5
-MF1='MB':'trimf',[-0.25 0 0.2873]
-MF2='B':'trimf',[0.06663 0.2873 0.5]
-MF3='M':'trimf',[0.2873 0.5 0.7174]
-MF4='A':'trimf',[0.5 0.7174 0.9334]
-MF5='MA':'trimf',[0.7174 1 1.254]
+MF1='MB':'trimf',[0.375 0.5 0.6437]
+MF2='B':'trimf',[0.5333 0.6437 0.75]
+MF3='M':'trimf',[0.6437 0.75 0.8587]
+MF4='A':'trimf',[0.75 0.8587 0.9667]
+MF5='MA':'trimf',[0.8587 1 1.127]
 
 [Rules]
 1 1, 1 (1) : 1

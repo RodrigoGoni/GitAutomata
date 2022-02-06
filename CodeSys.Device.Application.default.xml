@@ -16,14 +16,24 @@
         <Node name="cAng" type="T_LREAL" access="ReadWrite" />
         <Node name="cD" type="T_LREAL" access="ReadWrite" />
         <Node name="cS" type="T_LREAL" access="ReadWrite" />
+        <Node name="FCi" type="T_LREAL" access="ReadWrite" />
+        <Node name="FCxc_0" type="T_LREAL" access="ReadWrite" />
+        <Node name="FCxc_80" type="T_LREAL" access="ReadWrite" />
+        <Node name="FinEmer" type="T_LREAL" access="ReadWrite" />
         <Node name="flag_emergencia" type="T_LREAL" access="ReadWrite" />
         <Node name="modo" type="T_LREAL" access="ReadWrite" />
         <Node name="Parada" type="T_LREAL" access="ReadWrite" />
         <Node name="posF_flag" type="T_LREAL" access="ReadWrite" />
+        <Node name="S_e1" type="T_LREAL" access="ReadWrite" />
+        <Node name="S_e2" type="T_LREAL" access="ReadWrite" />
+        <Node name="S_e3" type="T_LREAL" access="ReadWrite" />
         <Node name="sCarga" type="T_LREAL" access="ReadWrite" />
         <Node name="ssMethodType" type="T_SINT" access="ReadWrite" />
         <Node name="theta" type="T_LREAL" access="ReadWrite" />
+        <Node name="vc" type="T_LREAL" access="ReadWrite" />
         <Node name="vel_Izmax" type="T_LREAL" access="ReadWrite" />
+        <Node name="vi" type="T_LREAL" access="ReadWrite" />
+        <Node name="vMi" type="T_LREAL" access="ReadWrite" />
         <Node name="X_com" type="T_LREAL" access="ReadWrite" />
         <Node name="xCarro_pos" type="T_LREAL" access="ReadWrite" />
         <Node name="xef" type="T_LREAL" access="ReadWrite" />
@@ -32,13 +42,21 @@
         <Node name="yef" type="T_LREAL" access="ReadWrite" />
       </Node>
       <Node name="OUTPUTS">
+        <Node name="alarmaC" type="T_LREAL" access="ReadWrite" />
+        <Node name="alarmaG" type="T_LREAL" access="ReadWrite" />
+        <Node name="alarmaIz" type="T_LREAL" access="ReadWrite" />
+        <Node name="alarmaM" type="T_LREAL" access="ReadWrite" />
+        <Node name="flag_control" type="T_LREAL" access="ReadWrite" />
         <Node name="flag_disDesP" type="T_LREAL" access="ReadWrite" />
+        <Node name="flag_emergenciaN0" type="T_LREAL" access="ReadWrite" />
         <Node name="modo_de_control" type="T_LREAL" access="ReadWrite" />
         <Node name="modo_op" type="T_LREAL" access="ReadWrite" />
         <Node name="velmX" type="T_LREAL" access="ReadWrite" />
         <Node name="velmY" type="T_LREAL" access="ReadWrite" />
         <Node name="vx" type="T_LREAL" access="ReadWrite" />
+        <Node name="vxN0" type="T_LREAL" access="ReadWrite" />
         <Node name="vy" type="T_LREAL" access="ReadWrite" />
+        <Node name="vyN0" type="T_LREAL" access="ReadWrite" />
         <Node name="xsf" type="T_LREAL" access="ReadWrite" />
         <Node name="xsi" type="T_LREAL" access="ReadWrite" />
         <Node name="ysf" type="T_LREAL" access="ReadWrite" />
