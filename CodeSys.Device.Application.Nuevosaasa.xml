@@ -7,7 +7,11 @@
   </Header>
   <TypeList>
     <TypeSimple name="T_LREAL" size="8" swapsize="8" typeclass="LReal" iecname="LREAL" />
+    <TypeSimple name="T_REAL" size="4" swapsize="4" typeclass="Real" iecname="REAL" />
     <TypeSimple name="T_SINT" size="1" swapsize="1" typeclass="SInt" iecname="SINT" />
+    <TypeArray name="T_ARRAY__0__1__OF_LREAL" size="16" nativesize="16" typeclass="Array" iecname="ARRAY [0..1] OF LREAL" basetype="T_LREAL">
+      <ArrayDim minrange="0" maxrange="1" />
+    </TypeArray>
   </TypeList>
   <NodeList>
     <Node name="Application" />

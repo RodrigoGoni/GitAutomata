@@ -15,7 +15,7 @@ Controller"
 Controller
  * Subsystem sample time           : 0.2s
  * Simulink PLC Coder version      : 3.3 (R2020b) 29-Jul-2020
- * ST code generated on            : Sat Feb 19 13:46:30 2022
+ * ST code generated on            : Sat Feb 19 14:39:31 2022
  *
  * Target IDE selection            : 3S CoDeSys 2.3
  * Test Bench included             : No

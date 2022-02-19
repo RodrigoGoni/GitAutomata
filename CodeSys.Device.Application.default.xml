@@ -7,7 +7,11 @@
   </Header>
   <TypeList>
     <TypeSimple name="T_LREAL" size="8" swapsize="8" typeclass="LReal" iecname="LREAL" />
+    <TypeSimple name="T_REAL" size="4" swapsize="4" typeclass="Real" iecname="REAL" />
     <TypeSimple name="T_SINT" size="1" swapsize="1" typeclass="SInt" iecname="SINT" />
+    <TypeArray name="T_ARRAY__0__1__OF_LREAL" size="16" nativesize="16" typeclass="Array" iecname="ARRAY [0..1] OF LREAL" basetype="T_LREAL">
+      <ArrayDim minrange="0" maxrange="1" />
+    </TypeArray>
   </TypeList>
   <NodeList>
     <Node name="Application">
@@ -16,6 +20,10 @@
         <Node name="cAng" type="T_LREAL" access="ReadWrite" />
         <Node name="cD" type="T_LREAL" access="ReadWrite" />
         <Node name="cS" type="T_LREAL" access="ReadWrite" />
+        <Node name="dlh" type="T_REAL" access="ReadWrite" />
+        <Node name="dlh_r" type="T_REAL" access="ReadWrite" />
+        <Node name="dxc" type="T_REAL" access="ReadWrite" />
+        <Node name="dxc_r" type="T_REAL" access="ReadWrite" />
         <Node name="FCi" type="T_LREAL" access="ReadWrite" />
         <Node name="FCxc_0" type="T_LREAL" access="ReadWrite" />
         <Node name="FCxc_80" type="T_LREAL" access="ReadWrite" />
@@ -30,6 +38,7 @@
         <Node name="sCarga" type="T_LREAL" access="ReadWrite" />
         <Node name="ssMethodType" type="T_SINT" access="ReadWrite" />
         <Node name="theta" type="T_LREAL" access="ReadWrite" />
+        <Node name="theta_arr" type="T_ARRAY__0__1__OF_LREAL" access="ReadWrite" />
         <Node name="vc" type="T_LREAL" access="ReadWrite" />
         <Node name="vel_Izmax" type="T_LREAL" access="ReadWrite" />
         <Node name="vi" type="T_LREAL" access="ReadWrite" />
@@ -49,8 +58,11 @@
         <Node name="flag_control" type="T_LREAL" access="ReadWrite" />
         <Node name="flag_disDesP" type="T_LREAL" access="ReadWrite" />
         <Node name="flag_emergenciaN0" type="T_LREAL" access="ReadWrite" />
+        <Node name="gain" type="T_LREAL" access="ReadWrite" />
         <Node name="modo_de_control" type="T_LREAL" access="ReadWrite" />
         <Node name="modo_op" type="T_LREAL" access="ReadWrite" />
+        <Node name="Thm" type="T_LREAL" access="ReadWrite" />
+        <Node name="Tm" type="T_LREAL" access="ReadWrite" />
         <Node name="velmX" type="T_LREAL" access="ReadWrite" />
         <Node name="velmY" type="T_LREAL" access="ReadWrite" />
         <Node name="vx" type="T_LREAL" access="ReadWrite" />
